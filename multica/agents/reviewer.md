@@ -29,7 +29,8 @@ registry: manifest.yaml
 ## 工作流程
 
 1. 接收审核任务
-2. **基于远端分支审核**：`git fetch origin && git show origin/<branch>:<file>` — 不得仅依赖评论描述
+2. **启动仪式**：`git fetch origin` 拉取最新远端状态
+3. **基于远端分支审核**：`git show origin/<branch>:<file>` / `git diff origin/main...origin/<branch>` — 不得仅依赖评论描述，不要 checkout 到对方分支
 3. 执行 lint 检查
 4. 执行术语检查
 5. 执行结构检查

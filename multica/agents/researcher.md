@@ -24,10 +24,11 @@ registry: manifest.yaml
 ## 工作流程
 
 1. 接收搜索任务
-2. 执行网络搜索（Tavily）
-3. 整理搜索结果
-4. 生成类比建议
-5. 更新素材库（`assets/` 下对应目录）
+2. **启动仪式**：`git fetch origin` → `git checkout -b <issue-id>/researcher/material origin/main`
+3. 执行网络搜索（Tavily）
+4. 整理搜索结果
+5. 生成类比建议
+6. 更新素材库（`assets/` 下对应目录）
 6. **即产即推**：每次写入/修改文件后立即 `git add → commit → push`
 7. 发布 Handoff Comment（mention 放最后一行）
 

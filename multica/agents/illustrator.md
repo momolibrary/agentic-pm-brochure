@@ -24,8 +24,9 @@ registry: manifest.yaml
 ## 工作流程
 
 1. 接收图示需求
-2. 分析图示类型
-3. 设计图示结构
+2. **启动仪式**：`git fetch origin` → `git checkout -b <issue-id>/illustrator/material origin/main`
+3. 分析图示类型
+4. 设计图示结构
 4. 生成图示文件
 5. **即产即推**：文本格式图示（Mermaid/PlantUML）写入后立即 `git add → commit → push`
 6. 编写图示说明

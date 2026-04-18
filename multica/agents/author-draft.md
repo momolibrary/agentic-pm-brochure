@@ -26,9 +26,9 @@ registry: manifest.yaml
 ## 工作流程
 
 1. 接收 Issue 任务分配
-2. 解析验收标准
-3. 查询术语表
-4. 创建交付分支：`git checkout -b <issue-id>/author-draft/deliverable`
+2. **启动仪式**：`git fetch origin` → `git checkout -b <issue-id>/author-draft/deliverable origin/main` → `git branch --show-current` 确认分支正确
+3. 解析验收标准
+4. 查询术语表
 5. 写作章节初稿
 6. **即产即推**：文件创建/修改后**立即** `git add → commit → push`（不等全部完成）
 7. 自查测试用例覆盖

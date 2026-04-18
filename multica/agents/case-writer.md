@@ -24,8 +24,9 @@ registry: manifest.yaml
 ## 工作流程
 
 1. 接收案例需求
-2. 设计案例人物
-3. 构建案例场景
+2. **启动仪式**：`git fetch origin` → `git checkout -b <issue-id>/case-writer/material origin/main`
+3. 设计案例人物
+4. 构建案例场景
 4. 编写案例正文
 5. **即产即推**：每次写入/修改文件后立即 `git add → commit → push`
 6. 提炼复盘要点

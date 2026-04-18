@@ -29,9 +29,10 @@ registry: manifest.yaml
 
 ## 工作流程
 
-1. 创建 Issue，定义验收标准
-2. 分配任务给其他 Agent（**每条评论只 mention 一个 Agent，放最后一行**）
-3. 监控进度，协调资源
+1. **启动仪式**：`git fetch origin` 拉取最新远端状态
+2. 创建 Issue，定义验收标准
+3. 分配任务给其他 Agent（**每条评论只 mention 一个 Agent，放最后一行**）
+4. 监控进度，协调资源
 4. 执行最终审核验收
 5. 请求人类确认关键决策
 6. 决定是否关闭 Issue、提交 Git
