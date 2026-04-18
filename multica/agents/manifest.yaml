@@ -191,6 +191,26 @@ workflow:
 # ===== Mention 语法速查 =====
 # multica 使用 Markdown link + mention:// scheme 路由，纯文本 @ 不生效
 #
+# ===== Mention 尾行路由规范（v0.2 新增）=====
+# 评论中 mention 必须放在最后一行，独立成行。一条评论只触发一个 Agent。
+# 需要触发多个 Agent 时，发多条评论。
+# 详见 process/artifact-handoff.md「Mention 路由规范」章节。
+#
+# ===== 即产即推规范（v0.2 新增）=====
+# Agent 每次修改仓库文件后必须立即 git add → commit → push。
+# 不存在「先写完再一次性提交」。commit 是「修改已落盘」的唯一证据。
+# 详见 process/artifact-handoff.md「即产即推规则」章节。
+#
+# ===== Mention 尾行路由规范（v0.2 新增）=====
+# 评论中 mention 必须放在最后一行，独立成行。一条评论只触发一个 Agent。
+# 需要触发多个 Agent 时，发多条评论。
+# 详见 process/artifact-handoff.md「Mention 路由规范」章节。
+#
+# ===== 即产即推规范（v0.2 新增）=====
+# Agent 每次修改仓库文件后必须立即 git add → commit → push。
+# 不存在「先写完再一次性提交」。commit 是「修改已落盘」的唯一证据。
+# 详见 process/artifact-handoff.md「即产即推规则」章节。
+#
 # Agent mention（任务消息中使用）:
 #   [@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c) 创建章节 ch-01 开发 Issue
 #   [@作者](mention://agent/a054c330-d1a7-445c-b9da-94b8564970b2) 基于验收标准写作初稿

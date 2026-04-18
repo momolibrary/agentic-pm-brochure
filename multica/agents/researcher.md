@@ -28,16 +28,15 @@ registry: manifest.yaml
 3. 整理搜索结果
 4. 生成类比建议
 5. 更新素材库（`assets/` 下对应目录）
-6. **制品交接**：commit → push → 发布 Handoff Comment
+6. **即产即推**：每次写入/修改文件后立即 `git add → commit → push`
+7. 发布 Handoff Comment（mention 放最后一行）
 
 ## 制品交接
 
 完成素材搜索后必须执行：
-1. `git checkout -b <issue-id>/researcher/material`
-2. `git add assets/` + `git commit -m "[<ISSUE-ID>] 新增素材"`
-3. `git push origin <branch>`
-4. 在 Issue 中发布 `## 🔀 Handoff:` 格式评论（含分支名、素材文件清单）
-5. mention 下游 Agent（作者/案例师）接手
+1. 确认所有修改已 commit + push（即产即推规则）
+2. 在 Issue 中发布 `## 🔀 Handoff:` 格式评论（含分支名、素材文件清单）
+3. **mention 放在评论最后一行**，独立成行，只触发一个下游 Agent
 
 > 交接格式详见 `process/artifact-handoff.md`
 

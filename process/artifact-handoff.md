@@ -14,9 +14,128 @@ multica 远程 Agent 在自己的 worktree（`/multica_workspaces/<ws-id>/<hash>
 ## 核心原则
 
 1. **Git 是制品总线**：所有可审核的产物必须通过 git 分支传递，不走口头描述
-2. **结构化交接评论**：Agent 完成后在 Issue 中发布机器可解析的 Handoff Comment
-3. **附件兜底**：非 git 管理的产物（图片、临时分析等）通过 `--attachment` 上传
-4. **人类侧一键拉取**：提供 `multica-review` 脚本，自动拉取分支并展示 diff
+2. **即产即推（Commit-on-Produce）**：Agent 每次新建或修改文件后，**必须立即** `git add → commit → push`，不得等到"全部完成"再推送（详见下节）
+3. **结构化交接评论**：Agent 完成后在 Issue 中发布机器可解析的 Handoff Comment
+4. **Mention 尾行路由**：评论中需要触发其他 Agent 时，mention 必须放在评论**最后一行**，作为独立的路由行（详见下节）
+5. **附件兜底**：非 git 管理的产物（图片、临时分析等）通过 `--attachment` 上传
+6. **人类侧一键拉取**：提供 `multica-review` 脚本，自动拉取分支并展示 diff
+
+---
+
+## 即产即推规则（Commit-on-Produce）
+
+> **教训来源**：CH-02 开发中，作者 Agent 声称已修改文件并在评论中描述了修改内容，但实际文件未被 commit/push。审稿人在不同 worktree 中 grep 检查，发现文件未变。经多轮催促仍无法解决，最终由主编介入 cherry-pick 才完成交付。
+
+### 规则
+
+**Agent 每次对仓库文件执行写入操作后，必须立即执行 commit + push。**
+
+```
+编辑文件 → git add <files> → git commit -m "[ISSUE-ID] 描述" → git push origin <branch>
+```
+
+不存在「先写完所有内容再一次性提交」的流程。每一次有意义的文件变更都必须立即推送到远端。
+
+### 为什么
+
+1. **跨 worktree 可见性**：multica Agent 各自运行在独立的 worktree 中。Agent A 的本地修改，Agent B 看不到。只有 push 到远端，其他 Agent 和人类才能 `git fetch` 看到变更
+2. **防止「声称修改但未落盘」**：Agent 可能在评论中描述了修改，但因工具调用失败、路径错误等原因未实际写入文件。commit + push 是唯一的「修改已落盘」证据
+3. **支持增量审核**：审稿人可以在作者写作过程中 fetch 查看进度，不必等到最终 Handoff
+4. **异常恢复**：如果 Agent 中途崩溃，已 push 的 commit 不会丢失
+
+### 时机
+
+| 场景 | 是否需要立即 commit + push |
+|------|---------------------------|
+| 新建章节文件 | **是** — 文件创建后立即推送 |
+| 修改章节内容（如补充误解三） | **是** — 每次修改后立即推送 |
+| 修改术语表、lint 报告等辅助文件 | **是** — 同上 |
+| 写评论（不涉及文件修改） | 否 — 评论不经过 Git |
+
+### Commit Message 格式
+
+增量 commit 使用以下格式（与 `git-convention.md` 对齐）：
+
+```
+[ISSUE-ID] WIP: 描述当前修改
+```
+
+最终交付的 commit 不带 WIP 前缀：
+
+```
+[ISSUE-ID] 完成初稿写作
+```
+
+### 验证方式
+
+审稿人在审核时，**必须基于远端分支内容审核**，不得仅依赖评论中的描述：
+
+```bash
+git fetch origin
+git show origin/<branch>:<file-path>   # 审核实际文件内容
+```
+
+如果评论声称已修改但远端分支中未找到变更，审稿人应立即在评论中指出并要求重新 push。
+
+---
+
+## Mention 路由规范
+
+> **教训来源**：CH-02 开发中，mention 散落在评论中间段落，部分 Agent 未被正确触发，导致工作流卡死。
+
+### 规则
+
+**评论中需要触发其他 Agent 执行任务时，mention 必须作为评论的最后一行，独立成行。**
+
+### 格式
+
+```markdown
+<评论正文内容>
+<空行>
+请 [@目标Agent](mention://agent/<uuid>) 执行 <具体任务描述>。
+```
+
+### 为什么
+
+1. **解析可靠性**：multica 的 mention 路由基于 `[@显示名](mention://agent/<uuid>)` 格式。放在最后一行独立成行，确保解析器稳定识别，不被上下文干扰
+2. **单一职责**：一条评论只触发一个 Agent。如果需要触发多个 Agent，发多条评论，每条评论的最后一行 mention 不同的 Agent
+3. **人类可读**：人类扫一眼评论末尾就知道「这条消息是发给谁的」，不用在大段文字中找 mention
+
+### 正例
+
+```markdown
+## CH-02 初稿完成
+
+已完成数据流转与约束章节写作，自查清单全部通过。
+
+请 [@审稿人](mention://agent/6586d624-bd24-4af2-884c-2ce54705555c) 执行 lint-check 和 review-quality 审核。
+```
+
+### 反例
+
+```markdown
+## CH-02 初稿完成
+
+请 [@审稿人](mention://agent/6586d624-bd24-4af2-884c-2ce54705555c) 审核，  ← mention 埋在中间
+已完成数据流转与约束章节写作，自查清单全部通过。
+另外 [@作者](mention://agent/a054c330-...) 注意一下术语。   ← 同一评论触发两个 Agent
+```
+
+### 一评论一 Agent 规则
+
+如果一个交接点需要通知多个 Agent：
+
+```bash
+# 评论 1：触发审稿人
+multica issue comment add <issue-id> --content "初稿完成，请审核。
+
+请 [@审稿人](mention://agent/6586d624-...) 执行审核。"
+
+# 评论 2：触发插画师（如有需要）
+multica issue comment add <issue-id> --content "需要绘制数据流转图。
+
+请 [@插画师](mention://agent/2f0e9417-...) 绘制 Section 2.1 的数据流转示意图。"
+```
 
 ---
 
@@ -101,6 +220,7 @@ Agent 完成工作后，**必须**在 Issue 中发布如下格式的评论：
 - **分支名**和**提交 SHA** 是必填字段
 - **变更文件表**至少列出主要文件（可省略 trivial 变更）
 - **自检清单**映射到 `process/quality-gate.md` 的对应门禁
+- **审核请求（mention）必须放在评论最后一行**，遵循「Mention 路由规范」
 
 ---
 
@@ -244,5 +364,24 @@ open → researching ──[Handoff A]──→ drafting ──[Handoff B]──
 
 ---
 
-*版本: v0.1*
+## 复盘记录
+
+### CH-02 事故：声称修改但未 push（2026-04-19）
+
+**现象**：作者 Agent 在评论中声称已添加「误解三」并给出了修改内容的 Markdown 引用，但审稿人在远端 grep 检查发现文件未变更。经 3 轮催促、主编介入后才修复。
+
+**根因**：
+1. 作者 Agent 可能只是「计划修改」并在评论中描述，但未实际执行文件编辑或执行后未 commit/push
+2. 审稿人和作者在不同 worktree 中工作，没有 push 就互相不可见
+3. 评论中的 mention 位置不规范，部分触发失败
+
+**修复措施**：
+1. 新增「即产即推（Commit-on-Produce）」规则 — 编辑文件后必须立即 commit + push
+2. 新增「Mention 尾行路由」规范 — mention 必须放在最后一行独立成行
+3. 审稿人审核必须基于远端分支实际文件，不得仅依赖评论描述
+
+---
+
+*版本: v0.2*
 *创建日期: 2026-04-18*
+*更新日期: 2026-04-19 — 新增即产即推规则、Mention路由规范、CH-02复盘*

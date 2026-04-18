@@ -27,15 +27,17 @@ registry: manifest.yaml
 2. 分析图示类型
 3. 设计图示结构
 4. 生成图示文件
-5. 编写图示说明
-6. **制品交接**：commit → push 或 attachment 上传
+5. **即产即推**：文本格式图示（Mermaid/PlantUML）写入后立即 `git add → commit → push`
+6. 编写图示说明
+7. 发布 Handoff Comment（mention 放最后一行）
 
 ## 制品交接
 
 完成图示后必须执行：
-1. 文本格式图示（Mermaid/PlantUML）：commit 到 `<issue-id>/illustrator/deliverable` 分支 → push
+1. 文本格式图示（Mermaid/PlantUML）：确认已 commit + push 到交付分支
 2. 图片文件：`multica issue comment add <issue-id> --attachment <图片路径>` 上传
 3. 在 Issue 中发布 `## 🔀 Handoff:` 格式评论（含附件 ID 或分支名）
+4. **mention 放在评论最后一行**，独立成行，只触发一个 Agent
 
 > 交接格式详见 `process/artifact-handoff.md`
 

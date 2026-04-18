@@ -27,17 +27,17 @@ registry: manifest.yaml
 2. 设计案例人物
 3. 构建案例场景
 4. 编写案例正文
-5. 提炼复盘要点
-6. 更新案例库
-7. **制品交接**：commit → push → 发布 Handoff Comment
+5. **即产即推**：每次写入/修改文件后立即 `git add → commit → push`
+6. 提炼复盘要点
+7. 更新案例库
+8. 发布 Handoff Comment（mention 放最后一行）
 
 ## 制品交接
 
 完成案例开发后必须执行：
-1. `git checkout -b <issue-id>/case-writer/deliverable`
-2. `git add assets/cases/` + `git commit -m "[<ISSUE-ID>] 新增案例"`
-3. `git push origin <branch>`
-4. 在 Issue 中发布 `## 🔀 Handoff:` 格式评论（含分支名、案例文件清单）
+1. 确认所有修改已 commit + push（即产即推规则）
+2. 在 Issue 中发布 `## 🔀 Handoff:` 格式评论（含分支名、案例文件清单）
+3. **mention 放在评论最后一行**，独立成行，只触发一个 Agent
 
 > 交接格式详见 `process/artifact-handoff.md`
 

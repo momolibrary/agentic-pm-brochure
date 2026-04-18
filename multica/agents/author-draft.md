@@ -28,18 +28,36 @@ registry: manifest.yaml
 1. 接收 Issue 任务分配
 2. 解析验收标准
 3. 查询术语表
-4. 写作章节初稿
-5. 自查测试用例覆盖
-6. **制品交接**：commit → push → 发布 Handoff Comment
+4. 创建交付分支：`git checkout -b <issue-id>/author-draft/deliverable`
+5. 写作章节初稿
+6. **即产即推**：文件创建/修改后**立即** `git add → commit → push`（不等全部完成）
+7. 自查测试用例覆盖
+8. 如有修订（审稿人退回），修改后**立即** commit + push，不得仅在评论中描述修改
+9. 发布 Handoff Comment（mention 放最后一行）
+
+## 即产即推（Commit-on-Produce）
+
+> 来自 CH-02 教训：声称修改但未 push，审稿人看不到变更，导致多轮无效催促。
+
+**每次编辑文件后，必须立即执行：**
+
+```bash
+git add <modified-files>
+git commit -m "[ISSUE-ID] WIP: 描述修改内容"
+git push origin <branch>
+```
+
+- 不存在「先写完再一次性提交」
+- commit 是「修改已落盘」的唯一证据
+- 其他 Agent 和人类只能通过远端分支看到你的修改
 
 ## 制品交接
 
 完成写作后必须执行：
-1. `git checkout -b <issue-id>/author-draft/deliverable`
-2. `git add` + `git commit -m "[<ISSUE-ID>] 完成初稿写作"`
-3. `git push origin <branch>`
-4. 在 Issue 中发布 `## 🔀 Handoff:` 格式评论（含分支名、commit SHA、文件清单、自检清单）
-5. 非 git 产物（截图等）使用 `multica issue comment add --attachment` 上传
+1. 确认所有修改已 commit + push（即产即推规则）
+2. 在 Issue 中发布 `## 🔀 Handoff:` 格式评论（含分支名、commit SHA、文件清单、自检清单）
+3. **mention 放在评论最后一行**，独立成行，只触发一个 Agent
+4. 非 git 产物（截图等）使用 `multica issue comment add --attachment` 上传
 
 > 交接格式详见 `process/artifact-handoff.md`
 
