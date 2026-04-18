@@ -135,6 +135,32 @@ if [[ "$DO_MERGE" == "--merge" ]]; then
     multica issue comment add "$ISSUE_ID" --content "审核通过，已 merge 分支 \`${BRANCH}\`。"
     multica issue status "$ISSUE_ID" approved 2>/dev/null || true
     ok "已 merge 并更新 Issue 状态"
+
+    # ─── 干净退出：清理已合并分支 ───
+    info "执行干净退出：清理已合并分支..."
+    # 删除远端分支
+    if git push origin --delete "${BRANCH}" 2>/dev/null; then
+        ok "已删除远端分支 origin/${BRANCH}"
+    else
+        warn "远端分支 origin/${BRANCH} 删除失败（可能已不存在）"
+    fi
+    # 删除本地分支（如果存在）
+    if git branch --list "${BRANCH}" | grep -q .; then
+        git branch -d "${BRANCH}" 2>/dev/null && ok "已删除本地分支 ${BRANCH}" || warn "本地分支 ${BRANCH} 删除失败"
+    fi
+    # 清理 stale 远端引用
+    git fetch --prune 2>/dev/null
+    # 清理其他已合并的 stale 分支
+    STALE=$(git branch --merged main | grep -v '\* main' | grep -v '^  main$' || true)
+    if [[ -n "$STALE" ]]; then
+        echo -e "${YELLOW}发现其他已合并的本地分支:${NC}"
+        echo "$STALE"
+        read -rp "是否一并清理? (y/N): " CLEAN_ALL
+        if [[ "$CLEAN_ALL" == "y" || "$CLEAN_ALL" == "Y" ]]; then
+            echo "$STALE" | xargs git branch -d 2>/dev/null
+            ok "已清理所有 stale 分支"
+        fi
+    fi
 else
     echo ""
     echo -e "${CYAN}下一步操作:${NC}"

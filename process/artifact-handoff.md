@@ -17,8 +17,9 @@ multica 远程 Agent 在自己的 worktree（`/multica_workspaces/<ws-id>/<hash>
 2. **即产即推（Commit-on-Produce）**：Agent 每次新建或修改文件后，**必须立即** `git add → commit → push`，不得等到"全部完成"再推送（详见下节）
 3. **结构化交接评论**：Agent 完成后在 Issue 中发布机器可解析的 Handoff Comment
 4. **Mention 尾行路由**：评论中需要触发其他 Agent 时，mention 必须放在评论**最后一行**，作为独立的路由行（详见下节）
-5. **附件兜底**：非 git 管理的产物（图片、临时分析等）通过 `--attachment` 上传
-6. **人类侧一键拉取**：提供 `multica-review` 脚本，自动拉取分支并展示 diff
+5. **干净退出（Clean Exit）**：分支在 merge 后删除，worktree 在 task 结束后清理。历史通过 commit / PR / Issue 回溯，不依赖残留分支（详见下节）
+6. **附件兜底**：非 git 管理的产物（图片、临时分析等）通过 `--attachment` 上传
+7. **人类侧一键拉取**：提供 `multica-review` 脚本，自动拉取分支并展示 diff
 
 ---
 
@@ -292,16 +293,155 @@ Agent A 完成研究，push 素材到 branch
 
 ---
 
-## 分支命名规范
+## Worktree 隔离模型与分支约定
+
+### multica 的 worktree 机制
+
+multica daemon 为每个 task 创建**独立的 git worktree**：
+
+```
+~/multica_workspaces/.repos/<workspace-id>/<repo>.git       ← bare clone (所有 agent 共享)
+    └── worktree: ~/<workspace-id>/<task-hash>/workdir/      ← 每个 task 独占一个目录
+          自动分支: agent/<agent-name>/<task-hash>            ← multica 自动创建
+          基底:     refs/remotes/origin/main                  ← 基于最新 main
+```
+
+核心事实：
+- **每个 agent 的每个 task 运行在独立目录中**，不共享文件系统
+- multica 自动创建 `agent/<agent-name>/<task-hash>` 作为 worktree 的工作分支
+- **跨 agent 可见性只有一种方式**：通过 `git push` 推到远端，然后其他 agent `git fetch` 拉取
+- 当 `reused=true` 时，同一个 agent 的新 task 复用上一次的 workdir（含残留文件和分支）
+
+### 双分支模型
+
+实际运行中存在两类分支：
+
+| 类型 | 命名格式 | 创建者 | 生命周期 |
+|------|----------|--------|----------|
+| 临时分支 | `agent/<agent-name>/<task-hash>` | multica 自动创建 | 随 task 生灭，不保证推送到远端 |
+| 约定分支 | `<issue-id>/<agent-name>/deliverable` | Agent 手动创建 | 需人类 merge 后清理 |
+
+### 启动仪式（Task Start Ritual）
+
+**Agent 接收 task 后的前三条命令**（在做任何文件操作之前）：
+
+```bash
+# 1. 拉取最新远端状态
+git fetch origin
+
+# 2. 创建约定分支（基于最新 main）
+git checkout -b <issue-id>/<agent-name>/deliverable origin/main
+
+# 3. 确认当前分支正确
+git branch --show-current
+# 应输出: <issue-id>/<agent-name>/deliverable
+```
+
+如果是修订轮次，使用 `<issue-id>/<agent-name>/fix-round<n>` 替换 `deliverable`。
+
+> **为什么不用 multica 自动分支？**
+> `agent/<name>/<hash>` 分支名包含 task hash，对人类不可读，且不包含 issue 信息。
+> 约定分支明确关联 issue 和 agent，方便人类审核和自动化脚本匹配。
+
+### 审核方的 Fetch 仪式
+
+审核 Agent（reviewer / editor-chief）在审核前的必做操作：
+
+```bash
+# 1. 拉取最新远端分支
+git fetch origin
+
+# 2. 从 Handoff Comment 中获取分支名，查看文件
+git show origin/<branch-from-handoff>:<file-path>
+
+# 3. 查看完整 diff
+git diff origin/main...origin/<branch-from-handoff>
+```
+
+**不要** `git checkout` 到对方的分支。直接通过 `origin/<branch>` 远程引用读取即可，避免影响自己的 worktree 状态。
+
+### 分支命名规范
 
 与 `process/git-convention.md` 对齐，扩展 Agent 交接场景：
 
 | 模式 | 示例 | 用途 |
 |------|------|------|
-| `<issue-id>/<agent>/deliverable` | `ch-01/author-draft/deliverable` | Agent 交付分支 |
-| `<issue-id>/<agent>/material` | `ch-01/researcher/material` | 素材准备分支 |
-| `<issue-id>/<agent>/fix-round<n>` | `ch-01/author-draft/fix-round2` | 修订轮次分支 |
-| `<issue-id>/review` | `ch-01/review` | 审核专用分支（合并多人产物） |
+| `agent/<agent>/<task-hash>` | `agent/author-draft/fe253f31` | multica 自动创建，**不用于交付** |
+| `<issue-id>/<agent>/deliverable` | `ch-02/author-draft/deliverable` | Agent 交付分支 |
+| `<issue-id>/<agent>/material` | `ch-02/researcher/material` | 素材准备分支 |
+| `<issue-id>/<agent>/fix-round<n>` | `ch-02/author-draft/fix-round2` | 修订轮次分支 |
+| `<issue-id>/review` | `ch-02/review` | 审核专用分支（合并多人产物） |
+
+---
+
+## 干净退出原则（Clean Exit）
+
+> **问题**：并行章节开发时，每个 task 会创建约定分支 + multica 自动分支。5 章并行就是 10+ 分支 + 若干 worktree 目录。不清理会导致：`git branch` 输出满屏噪声、`git fetch` 越来越慢、磁盘被 worktree 吃掉。
+
+### 核心思路
+
+**分支是临时工作区，不是档案。** 历史通过 merge commit（Squash）、PR、Issue comment 回溯，已合并分支没有保留价值。
+
+这与 GitHub Flow 一致：feature branch → PR → merge → delete branch。
+
+### 分支生命周期
+
+```
+create ──→ push ──→ review ──→ merge to main ──→ delete (local + remote)
+  │                                                  │
+  └─── commit history preserved via squash merge ─────┘
+```
+
+| 阶段 | 谁执行 | 操作 |
+|------|--------|------|
+| 创建 | Agent (task start) | `git checkout -b <issue-id>/<agent>/deliverable origin/main` |
+| 推送 | Agent (即产即推) | `git push origin <branch>` |
+| 合并 | 人类 (review 通过后) | `git merge --squash origin/<branch>` 或 PR merge |
+| 删除远端 | 人类 / 脚本 (merge 后) | `git push origin --delete <branch>` |
+| 删除本地 | 人类 / 脚本 (merge 后) | `git branch -d <branch>` |
+| 清理 stale | 定期 | `git fetch --prune` + `git branch --merged main \| grep -v main \| xargs git branch -d` |
+
+### multica worktree 清理
+
+multica daemon 在 `~/multica_workspaces/<ws-id>/<task-hash>/workdir/` 创建 worktree。这些目录在 task 结束后不会自动删除（`reused=true` 机制会复用）。
+
+定期清理：
+
+```bash
+# 查看 worktree 占用
+du -sh ~/multica_workspaces/
+
+# 清理已结束 task 的 worktree（保留最近 7 天）
+find ~/multica_workspaces -maxdepth 3 -name "workdir" -type d -mtime +7 -exec rm -rf {} +
+
+# 清理 bare clone 中的悬空 worktree 引用
+find ~/multica_workspaces/.repos -name "*.git" -type d -exec git -C {} worktree prune \;
+```
+
+### `multica-review.sh --merge` 增强
+
+`scripts/multica-review.sh --merge` 在合并后自动执行分支清理。详见脚本。
+
+### Agent 的退出清单
+
+Agent 在 task 结束前（发布 Handoff Comment 之后）：
+
+1. 确认所有文件已 commit + push
+2. **不要主动删除分支** — 分支由人类在 merge 后删除
+3. 如果 task 涉及多个中间分支（如 `material` + `deliverable`），在 Handoff Comment 中列出，方便人类统一清理
+
+### 人工清理一键命令
+
+```bash
+# 清理所有已合并到 main 的本地分支
+git branch --merged main | grep -v '\* main' | xargs -r git branch -d
+
+# 同步远端已删除的分支引用
+git fetch --prune
+
+# 完整清理（脚本封装）
+./scripts/multica-gc.sh
+```
 
 ---
 
@@ -382,6 +522,6 @@ open → researching ──[Handoff A]──→ drafting ──[Handoff B]──
 
 ---
 
-*版本: v0.2*
+*版本: v0.3*
 *创建日期: 2026-04-18*
-*更新日期: 2026-04-19 — 新增即产即推规则、Mention路由规范、CH-02复盘*
+*更新日期: 2026-04-19 — v0.2 即产即推+Mention路由; v0.3 Worktree隔离模型+干净退出原则*

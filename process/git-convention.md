@@ -12,6 +12,20 @@
 | `ch-XX/描述` | 章节开发 | `main` | `main`（via PR） |
 | `fix-XX/描述` | 修订（审核退回后） | `ch-XX/*` 或 `main` | `main`（via PR） |
 | `meta-XX/描述` | 流程/标准变更 | `main` | `main`（via PR） |
+| `agent/<name>/<hash>` | multica 自动创建 | `main` | **不 merge，仅临时** |
+
+### 分支生命周期
+
+**分支是临时工作区，不是档案。** 合并后删除。
+
+```
+merge 后必须执行:
+  git push origin --delete <branch>   # 删远端
+  git branch -d <branch>              # 删本地
+  git fetch --prune                   # 同步引用
+```
+
+详见 `process/artifact-handoff.md`「干净退出原则」。
 
 ### 分支命名示例
 
