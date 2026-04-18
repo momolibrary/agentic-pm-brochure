@@ -30,7 +30,18 @@ registry: manifest.yaml
 3. 查询术语表
 4. 写作章节初稿
 5. 自查测试用例覆盖
-6. 提交初稿等待审核
+6. **制品交接**：commit → push → 发布 Handoff Comment
+
+## 制品交接
+
+完成写作后必须执行：
+1. `git checkout -b <issue-id>/author-draft/deliverable`
+2. `git add` + `git commit -m "[<ISSUE-ID>] 完成初稿写作"`
+3. `git push origin <branch>`
+4. 在 Issue 中发布 `## 🔀 Handoff:` 格式评论（含分支名、commit SHA、文件清单、自检清单）
+5. 非 git 产物（截图等）使用 `multica issue comment add --attachment` 上传
+
+> 交接格式详见 `process/artifact-handoff.md`
 
 ## 输出标准
 

@@ -29,7 +29,17 @@ registry: manifest.yaml
 4. 编写案例正文
 5. 提炼复盘要点
 6. 更新案例库
-7. 返回案例内容
+7. **制品交接**：commit → push → 发布 Handoff Comment
+
+## 制品交接
+
+完成案例开发后必须执行：
+1. `git checkout -b <issue-id>/case-writer/deliverable`
+2. `git add assets/cases/` + `git commit -m "[<ISSUE-ID>] 新增案例"`
+3. `git push origin <branch>`
+4. 在 Issue 中发布 `## 🔀 Handoff:` 格式评论（含分支名、案例文件清单）
+
+> 交接格式详见 `process/artifact-handoff.md`
 
 ## 输出标准
 

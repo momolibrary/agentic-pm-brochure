@@ -21,18 +21,21 @@
 | `../../process/git-convention.md` | 分支、commit、PR 规范 | Git 操作时 |
 | `../../process/quality-gate.md` | 各阶段准入/准出条件 | 阶段切换时 |
 | `../../process/tool-compatibility.md` | 多工具兼容协议 | 切换工具 / 防腐化检查时 |
+| `../../process/artifact-handoff.md` | 跨服务器制品交接协议 | Agent 完成工作后交接时 |
 
 ## 核心流程概要
 
 ```
 1. editor-chief 创建 Issue（含 TDD 验收标准 ← tdd-template.md）
-2. researcher 搜索素材 → assets/
-3. author-draft 写作初稿 → manuscript/chapters/
+2. researcher 搜索素材 → assets/ → 🔀 Handoff Comment
+3. author-draft 写作初稿 → manuscript/chapters/ → 🔀 Handoff Comment
 4. reviewer 执行 lint-check → 生成 lint 报告
-5. illustrator 绘制图示 → manuscript/diagrams/
+5. illustrator 绘制图示 → manuscript/diagrams/ → 🔀 Handoff Comment
 6. reviewer 执行 review-quality → 验收报告
 7. editor-chief 终审 → 人工确认 → Git 提交
 ```
+
+> 各步 Handoff 交接规范见 `../../process/artifact-handoff.md`
 
 ## 人工确认节点
 

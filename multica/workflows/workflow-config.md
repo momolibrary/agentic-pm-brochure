@@ -105,7 +105,31 @@ Issue: [章节名] - 初稿开发
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### 3. Agent 协作语法（Mention）
+### 3. 制品交接（Artifact Handoff）
+
+跨服务器 Agent 完成工作后，**必须通过 Git 分支 + Handoff Comment 交接**，不得仅在 Issue 中口头描述。
+
+```
+Agent worktree ──git push──→ remote branch ──git fetch──→ Human local clone
+                     │
+                     └──→ Handoff Comment（含分支名、commit SHA、文件清单）
+```
+
+**Agent 必须**：
+1. 将产物 commit 到分支 `<issue-id>/<agent-name>/deliverable`
+2. `git push origin <branch>`
+3. 在 Issue 评论中发布 `## 🔀 Handoff:` 格式的结构化交接评论（格式见 `process/artifact-handoff.md`）
+4. 非 git 产物（图片等）使用 `multica issue comment add --attachment` 上传
+
+**Human 审核**：
+```bash
+./scripts/multica-review.sh <issue-id>       # 自动 fetch + diff
+./scripts/multica-review.sh <issue-id> --merge  # 审核通过并 merge
+```
+
+> 完整协议见 `process/artifact-handoff.md`
+
+### 4. Agent 协作语法（Mention）
 
 multica 使用 Markdown 链接 + `mention://` scheme 路由消息。**纯文本 `@agent-name` 不会被路由。**
 

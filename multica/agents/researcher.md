@@ -27,8 +27,19 @@ registry: manifest.yaml
 2. 执行网络搜索（Tavily）
 3. 整理搜索结果
 4. 生成类比建议
-5. 更新素材库
-6. 返回素材摘要
+5. 更新素材库（`assets/` 下对应目录）
+6. **制品交接**：commit → push → 发布 Handoff Comment
+
+## 制品交接
+
+完成素材搜索后必须执行：
+1. `git checkout -b <issue-id>/researcher/material`
+2. `git add assets/` + `git commit -m "[<ISSUE-ID>] 新增素材"`
+3. `git push origin <branch>`
+4. 在 Issue 中发布 `## 🔀 Handoff:` 格式评论（含分支名、素材文件清单）
+5. mention 下游 Agent（作者/案例师）接手
+
+> 交接格式详见 `process/artifact-handoff.md`
 
 ## 输出标准
 

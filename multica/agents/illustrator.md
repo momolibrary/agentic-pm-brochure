@@ -28,7 +28,16 @@ registry: manifest.yaml
 3. 设计图示结构
 4. 生成图示文件
 5. 编写图示说明
-6. 返回图示素材
+6. **制品交接**：commit → push 或 attachment 上传
+
+## 制品交接
+
+完成图示后必须执行：
+1. 文本格式图示（Mermaid/PlantUML）：commit 到 `<issue-id>/illustrator/deliverable` 分支 → push
+2. 图片文件：`multica issue comment add <issue-id> --attachment <图片路径>` 上传
+3. 在 Issue 中发布 `## 🔀 Handoff:` 格式评论（含附件 ID 或分支名）
+
+> 交接格式详见 `process/artifact-handoff.md`
 
 ## 输出标准
 
