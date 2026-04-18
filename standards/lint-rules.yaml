@@ -2,7 +2,7 @@
 # 人类可读说明见: lint-rules-guide.md
 # 被引用于: multica/skills/lint-check.md
 
-version: "0.1"
+version: "0.2"
 created: "2026-04-18"
 
 rules:
@@ -80,6 +80,51 @@ rules:
 
   # ========== 结构检查 ==========
   structure:
+    chapter-pacing:
+      description: "章节节奏公式——五段结构字数预算检查"
+      sections:
+        1:
+          name: "痛点场景"
+          target_words: 300
+          tolerance_pct: 30
+          maps_to: "①问题定义 + ②业务场景"
+        2:
+          name: "核心概念"
+          target_words: 800
+          tolerance_pct: 20
+          maps_to: "③概念解释 + ④PM误解"
+        3:
+          name: "开发怎么看"
+          target_words: 400
+          tolerance_pct: 25
+          maps_to: "⑤开发视角"
+        4:
+          name: "怎么做"
+          target_words: 600
+          tolerance_pct: 25
+          maps_to: "⑥PM行动 + ⑦AI辅助 + ⑧Checklist"
+        5:
+          name: "一句话总结"
+          target_words: 50
+          tolerance_pct: 50
+          maps_to: "⑨案例复盘要点 + ⑩总结"
+      total_words:
+        min: 2500
+        max: 3000
+      severity: warning
+      message: "章节节奏偏离：{section}段目标{target}字，实际{actual}字"
+
+    info-increment:
+      description: "信息增量契约——So What 测试"
+      rules:
+        - "每段必须有明确的信息增量"
+        - "相邻段落不得讲同一件事"
+        - "案例复盘不重述故事，只提炼新洞察"
+        - "总结不复述全文，只给公式或记忆点"
+        - "相邻两段可合并且不损失信息时，必须合并"
+      severity: warning
+      message: "段落未通过 So What 测试：{paragraph}无明确信息增量"
+
     chapter-structure:
       description: "章节必须包含10要素"
       elements:

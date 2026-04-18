@@ -22,6 +22,9 @@
 | 约束 | 值 | 来源 |
 |------|-----|------|
 | 句长上限 | ≤ 30 字 | style-guide.md |
+| 章节总字数 | 2500-3000 字（五段节奏） | style-guide.md |
+| 五段节奏 | 痛点~300 / 概念~800 / 开发视角~400 / 怎么做~600 / 总结~50 | style-guide.md |
+| 信息增量契约 | 每段须通过"So What"测试，无新信息则删 | style-guide.md |
 | 幽默等级 | 1-3（不超过 3） | style-guide.md |
 | 禁用空话词 | 赋能、抓手、闭环、沉淀、对齐 等 | style-guide.md / term-glossary.md |
 | 老李人设 | 40+岁产品总监，≥15 年经验，不会写代码，靠判断力和全局观 | project-definition.md / term-glossary.md |

@@ -55,6 +55,8 @@ registry: ../agents/manifest.yaml
 
 ### 结构检查
 - `chapter-structure`: 10要素完整性
+- `chapter-pacing`: 五段节奏字数预算检查（2500-3000 字总量，各段容差内）
+- `info-increment`: 信息增量契约 / So What 测试（每段必须有新信息增量）
 - `cross-reference`: 引用一致性
 
 ## 质量标准
