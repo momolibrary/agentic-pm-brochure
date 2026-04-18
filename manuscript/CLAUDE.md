@@ -31,6 +31,7 @@
 |------|---------|------|-----------|
 | CH-01 | `chapters/CH-01-数据基础.md` | approved | — |
 | CH-02 | `chapters/CH-02-数据流转与约束.md` | lint-review | [PMB-8](mention://issue/a23565b6-2524-4a70-b954-bf43e402973a) |
+| CH-06 | `chapters/CH-06-API设计原则与常见问题.md` | drafting | [PMB-12](mention://issue/2d617b72-67ff-4d9d-af1f-678aae6e05ec) |
 
 ## 章节状态定义
 
