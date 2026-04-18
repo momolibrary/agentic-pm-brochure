@@ -1,3 +1,12 @@
+---
+skill_id: review-quality
+skill_uuid: "850b316e-e735-4664-a7a8-b454604c003b"
+callers:
+  - reviewer        # 6586d624-bd24-4af2-884c-2ce54705555c
+  - editor-chief    # 7ba899bd-9e47-43d6-8f82-9940839f157c
+registry: ../agents/manifest.yaml
+---
+
 # Skill: review-quality
 
 质量审核验收能力
@@ -52,7 +61,9 @@
 
 ## Mention 语法
 
+multica 使用 `mention://` 协议路由，纯文本 `@` 不生效。
+
 ```
-@reviewer 执行 review-quality 审核 [章节]
-@editor-chief 验收 [章节] 质量
+[@审稿人](mention://agent/6586d624-bd24-4af2-884c-2ce54705555c) 执行 review-quality 审核 [章节]
+[@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c) 验收 [章节] 质量
 ```

@@ -107,16 +107,102 @@ Issue: [章节名] - 初稿开发
 
 ### 3. Agent 协作语法（Mention）
 
+multica 使用 Markdown 链接 + `mention://` scheme 路由消息。**纯文本 `@agent-name` 不会被路由。**
+
 ```
-@agent-name [任务描述]
+[@显示名](mention://agent/<agent-uuid>) [任务描述]
 ```
 
-示例：
-- `@researcher 搜索"软件工程入门"相关资料`
-- `@author-draft 基于[验收标准]写作章节初稿`
-- `@reviewer 执行 lint-check 检查文风一致性`
-- `@illustrator 绘制"需求到交付流程图"`
-- `@editor-chief 审核 chapter-01 初稿质量`
+#### Agent Mention 速查表
+
+| Agent | Mention |
+|-------|---------|
+| 主编 | `[@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c)` |
+| 作者 | `[@作者](mention://agent/a054c330-d1a7-445c-b9da-94b8564970b2)` |
+| 审稿人 | `[@审稿人](mention://agent/6586d624-bd24-4af2-884c-2ce54705555c)` |
+| 研究员 | `[@研究员](mention://agent/4828ea52-91fe-4422-b101-b3504d28b82c)` |
+| 案例师 | `[@案例师](mention://agent/2eb4c3b6-d91c-4372-9245-61769ab1032b)` |
+| 插画师 | `[@插画师](mention://agent/2f0e9417-105a-4607-8ee3-9dd26527f578)` |
+
+#### Issue Mention
+
+```
+[WS-123](mention://issue/<issue-uuid>)
+```
+
+#### 示例
+
+```
+[@研究员](mention://agent/4828ea52-91fe-4422-b101-b3504d28b82c) 搜索"软件工程入门"相关资料
+[@作者](mention://agent/a054c330-d1a7-445c-b9da-94b8564970b2) 基于验收标准写作章节初稿
+[@审稿人](mention://agent/6586d624-bd24-4af2-884c-2ce54705555c) 执行 lint-check 检查文风一致性
+[@插画师](mention://agent/2f0e9417-105a-4607-8ee3-9dd26527f578) 绘制"需求到交付流程图"
+[@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c) 审核 chapter-01 初稿质量
+```
+
+> 完整 UUID 映射见 `agents/manifest.yaml`
+
+---
+
+## 异常回退与重试规则
+
+工作流不是单向线性的。以下定义了每个阶段的回退路径和最大重试次数：
+
+| 场景 | 回退目标 | 最大重试 | 升级条件 |
+|------|---------|---------|---------|
+| lint-check 不通过 | → [@作者](mention://agent/a054c330-d1a7-445c-b9da-94b8564970b2) 修复 | 2 轮 | 2 轮后 [@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c) + 人工介入 |
+| review-quality 不通过 | → [@作者](mention://agent/a054c330-d1a7-445c-b9da-94b8564970b2) 修订 | 3 轮 | 3 轮后 [@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c) + 人工介入 |
+| 素材不足 | → [@研究员](mention://agent/4828ea52-91fe-4422-b101-b3504d28b82c) 补搜 | 2 轮 | 2 轮后 [@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c) 决策：降级/换题/人工补充 |
+| 终审不通过 | → Gate 4 重审 | 1 轮 | 直接人工介入 |
+
+### 回退流程图
+
+```
+[@审稿人](mention://agent/6586d624-...) 审核
+  ├── lint-check ❌ → [@作者](mention://agent/a054c330-...) 修复（≤2轮）→ 重新审核
+  ├── review-quality ❌ → [@作者](mention://agent/a054c330-...) 修订（≤3轮）→ 重新审核
+  └── 通过 ✅ → [@主编](mention://agent/7ba899bd-...) 终审
+        ├── 终审 ❌ → 退回 [@审稿人](mention://agent/6586d624-...)（≤1轮）→ 人工介入
+        └── 通过 ✅ → 人工确认 → Git 提交
+```
+
+> 门禁详细定义见 `process/quality-gate.md`
+
+---
+
+## 执行日志规范
+
+每个章节开发过程中，在 `manuscript/reviews/` 下自动生成执行日志：
+
+### 日志文件命名
+```
+manuscript/reviews/ch-XX-log.md
+```
+
+### 日志内容模板
+```markdown
+# CH-XX 执行日志
+
+## Issue
+- ID: [CH-XX]
+- 创建日期: [日期]
+- 状态: [当前状态]
+
+## 执行记录
+| 日期 | Agent | 动作 | 结果 | 备注 |
+|------|-------|------|------|------|
+| 2026-04-XX | [@主编](mention://agent/7ba899bd-...) | 创建 Issue | ✅ | 验收标准已确认 |
+| 2026-04-XX | [@研究员](mention://agent/4828ea52-...) | 素材搜索 | ✅ | 3 篇素材入库 |
+| 2026-04-XX | [@作者](mention://agent/a054c330-...) | 初稿写作 | ✅ | 提交审核 |
+| 2026-04-XX | [@审稿人](mention://agent/6586d624-...) | lint-check | ❌ | 2 处术语不一致 |
+| 2026-04-XX | [@作者](mention://agent/a054c330-...) | lint 修复 | ✅ | 重新提交 |
+| 2026-04-XX | [@审稿人](mention://agent/6586d624-...) | review-quality | ✅ | 通过率 100% |
+| 2026-04-XX | [@主编](mention://agent/7ba899bd-...) | 终审 | ✅ | 人类已确认 |
+
+## 审核报告链接
+- lint 报告: [链接]
+- 验收报告: [链接]
+```
 
 ---
 

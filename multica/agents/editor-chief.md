@@ -1,3 +1,14 @@
+---
+agent_id: editor-chief
+agent_uuid: "7ba899bd-9e47-43d6-8f82-9940839f157c"
+mention: "[@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c)"
+skills:
+  - review-quality   # 850b316e-e735-4664-a7a8-b454604c003b
+  - term-lookup      # 8ccb36b5-c098-4581-b94d-d4727f34a49d
+  - lint-check       # d9f5ed84-0b61-43a3-86f0-488403d3b8d9
+registry: manifest.yaml
+---
+
 # Agent: editor-chief
 
 主编角色
@@ -43,8 +54,10 @@
 
 ## 协作语法
 
+multica 使用 `mention://` 协议路由消息，纯文本 `@` 不生效。
+
 ```
-@editor-chief 创建章节 [章节名] 开发 Issue
-@editor-chief 审核 [章节名] 初稿质量
-@editor-chief 请人类确认：[决策内容]
+[@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c) 创建章节 [章节名] 开发 Issue
+[@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c) 审核 [章节名] 初稿质量
+[@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c) 请人类确认：[决策内容]
 ```

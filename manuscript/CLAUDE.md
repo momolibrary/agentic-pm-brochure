@@ -31,6 +31,23 @@
 |------|---------|------|-----------|
 | — | （暂无） | — | — |
 
+## 章节状态定义
+
+| 状态 | 含义 | 责任 Agent | 对应 Issue 状态 |
+|------|------|-----------|----------------|
+| `planned` | 已规划，未创建 Issue | [@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c) | — |
+| `issue-created` | Issue 已创建，含验收标准 | [@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c) | open |
+| `researching` | 素材搜索中 | [@研究员](mention://agent/4828ea52-91fe-4422-b101-b3504d28b82c) | researching |
+| `drafting` | 初稿写作中 | [@作者](mention://agent/a054c330-d1a7-445c-b9da-94b8564970b2) | drafting |
+| `lint-review` | Lint 检查中 | [@审稿人](mention://agent/6586d624-bd24-4af2-884c-2ce54705555c) | reviewing |
+| `content-review` | 内容验收中 | [@审稿人](mention://agent/6586d624-bd24-4af2-884c-2ce54705555c) | reviewing |
+| `revision` | 修订中（审核未通过） | [@作者](mention://agent/a054c330-d1a7-445c-b9da-94b8564970b2) | drafting |
+| `approved` | 终审通过 | [@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c) | approved |
+| `committed` | 已提交 Git | [@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c) | committed |
+| `published` | 已发布/已关闭 | [@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c) | closed |
+
+> 状态流转规则详见 `process/issue-protocol.md` 和 `multica/agents/manifest.yaml`
+
 ## 修改规则
 
 - **新增章节**：创建文件 → 更新本文件「章节目录」表 → 更新根 `../README.md` 进度

@@ -1,3 +1,11 @@
+---
+skill_id: lint-check
+skill_uuid: "d9f5ed84-0b61-43a3-86f0-488403d3b8d9"
+callers:
+  - reviewer        # 6586d624-bd24-4af2-884c-2ce54705555c
+registry: ../agents/manifest.yaml
+---
+
 # Skill: lint-check
 
 文风与术语一致性检查能力
@@ -57,7 +65,9 @@
 
 ## Mention 语法
 
+multica 使用 `mention://` 协议路由，纯文本 `@` 不生效。
+
 ```
-@reviewer 执行 lint-check 检查 [章节]
-@reviewer 检查 [章节] 文风一致性
+[@审稿人](mention://agent/6586d624-bd24-4af2-884c-2ce54705555c) 执行 lint-check 检查 [章节]
+[@审稿人](mention://agent/6586d624-bd24-4af2-884c-2ce54705555c) 检查 [章节] 文风一致性
 ```

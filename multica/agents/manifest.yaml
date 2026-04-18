@@ -1,0 +1,203 @@
+# multica/agents/manifest.yaml — Agent & Skill 注册表
+# multica CLI 通过此文件解析 mention 路由
+# 这是 Agent/Skill 注册的单一事实源（Single Source of Truth）
+#
+# ===== Multica Mention 协议 =====
+# multica 使用 Markdown 链接 + mention:// scheme 路由消息：
+#   Agent mention:  [@显示名](mention://agent/<agent-uuid>)
+#   Member mention: [@人名](mention://member/<member-uuid>)
+#   Issue mention:  [MUL-123](mention://issue/<issue-uuid>)
+# 纯文本 @agent-name 不会被 multica 路由，必须使用上述格式。
+# ================================
+
+workspace:
+  name: pm-brochure
+  id: "38f948e7-3827-40d0-b3ea-519c39440bf7"
+  repo: "/Users/tecson/Documents/github/agentic-pm-brochure"
+  owner_id: "50a90523-6e80-4107-9d3c-55ae656dddf4"
+
+agents:
+  - name: editor-chief
+    uuid: "7ba899bd-9e47-43d6-8f82-9940839f157c"
+    display_name: 主编
+    file: editor-chief.md
+    mention: "[@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c)"
+    skills:
+      - review-quality   # 850b316e-e735-4664-a7a8-b454604c003b
+      - term-lookup      # 8ccb36b5-c098-4581-b94d-d4727f34a49d
+      - lint-check       # d9f5ed84-0b61-43a3-86f0-488403d3b8d9
+    permissions:
+      create_issue: true
+      close_issue: true
+      assign_task: true
+      approve_review: true
+      git_commit: true  # 需人类确认
+      style_adjust: true
+
+  - name: author-draft
+    uuid: "a054c330-d1a7-445c-b9da-94b8564970b2"
+    display_name: 作者
+    file: author-draft.md
+    mention: "[@作者](mention://agent/a054c330-d1a7-445c-b9da-94b8564970b2)"
+    skills:
+      - chapter-draft    # e3a93712-a72c-4ce9-9291-44008951d565
+      - term-lookup      # 8ccb36b5-c098-4581-b94d-d4727f34a49d
+    permissions:
+      create_issue: false
+      close_issue: false
+      assign_task: false
+      approve_review: false
+      git_commit: false
+      style_adjust: false
+
+  - name: reviewer
+    uuid: "6586d624-bd24-4af2-884c-2ce54705555c"
+    display_name: 审稿人
+    file: reviewer.md
+    mention: "[@审稿人](mention://agent/6586d624-bd24-4af2-884c-2ce54705555c)"
+    skills:
+      - lint-check       # d9f5ed84-0b61-43a3-86f0-488403d3b8d9
+      - review-quality   # 850b316e-e735-4664-a7a8-b454604c003b
+      - term-lookup      # 8ccb36b5-c098-4581-b94d-d4727f34a49d
+    permissions:
+      create_issue: false
+      close_issue: false
+      assign_task: false
+      approve_review: true
+      git_commit: false
+      style_adjust: false
+
+  - name: researcher
+    uuid: "4828ea52-91fe-4422-b101-b3504d28b82c"
+    display_name: 研究员
+    file: researcher.md
+    mention: "[@研究员](mention://agent/4828ea52-91fe-4422-b101-b3504d28b82c)"
+    skills:
+      - research-search  # bafcf7de-d91d-443e-971a-8cf42932d145
+    permissions:
+      create_issue: false
+      close_issue: false
+      assign_task: false
+      approve_review: false
+      git_commit: false
+      style_adjust: false
+
+  - name: case-writer
+    uuid: "2eb4c3b6-d91c-4372-9245-61769ab1032b"
+    display_name: 案例师
+    file: case-writer.md
+    mention: "[@案例师](mention://agent/2eb4c3b6-d91c-4372-9245-61769ab1032b)"
+    skills:
+      - case-develop     # 626fa367-c31e-444d-9304-81106944620b
+    permissions:
+      create_issue: false
+      close_issue: false
+      assign_task: false
+      approve_review: false
+      git_commit: false
+      style_adjust: false
+
+  - name: illustrator
+    uuid: "2f0e9417-105a-4607-8ee3-9dd26527f578"
+    display_name: 插画师
+    file: illustrator.md
+    mention: "[@插画师](mention://agent/2f0e9417-105a-4607-8ee3-9dd26527f578)"
+    skills:
+      - diagram-create   # ba1ae40b-16b0-4339-a431-4ac54e8ab4da
+    permissions:
+      create_issue: false
+      close_issue: false
+      assign_task: false
+      approve_review: false
+      git_commit: false
+      style_adjust: false
+
+skills:
+  - name: chapter-draft
+    uuid: "e3a93712-a72c-4ce9-9291-44008951d565"
+    file: ../skills/chapter-draft.md
+    callers: [author-draft]
+    external_deps: []
+
+  - name: review-quality
+    uuid: "850b316e-e735-4664-a7a8-b454604c003b"
+    file: ../skills/review-quality.md
+    callers: [reviewer, editor-chief]
+    external_deps: []
+
+  - name: lint-check
+    uuid: "d9f5ed84-0b61-43a3-86f0-488403d3b8d9"
+    file: ../skills/lint-check.md
+    callers: [reviewer]
+    external_deps: []
+
+  - name: term-lookup
+    uuid: "8ccb36b5-c098-4581-b94d-d4727f34a49d"
+    file: ../skills/term-lookup.md
+    callers: [author-draft, reviewer]
+    external_deps: []
+
+  - name: case-develop
+    uuid: "626fa367-c31e-444d-9304-81106944620b"
+    file: ../skills/case-develop.md
+    callers: [case-writer]
+    external_deps: []
+
+  - name: diagram-create
+    uuid: "ba1ae40b-16b0-4339-a431-4ac54e8ab4da"
+    file: ../skills/diagram-create.md
+    callers: [illustrator]
+    external_deps:
+      - tool: glm-image
+        required: false
+        fallback: "mermaid markdown 文本图"
+
+  - name: research-search
+    uuid: "bafcf7de-d91d-443e-971a-8cf42932d145"
+    file: ../skills/research-search.md
+    callers: [researcher]
+    external_deps:
+      - tool: tavily
+        required: true
+        config_ref: "环境变量 TAVILY_API_KEY"
+
+# 工作流状态机
+workflow:
+  issue_states: [open, researching, drafting, reviewing, approved, committed, closed]
+  transitions:
+    - from: open
+      to: researching
+      actor: researcher      # 4828ea52-91fe-4422-b101-b3504d28b82c
+    - from: researching
+      to: drafting
+      actor: author-draft    # a054c330-d1a7-445c-b9da-94b8564970b2
+    - from: drafting
+      to: reviewing
+      actor: reviewer        # 6586d624-bd24-4af2-884c-2ce54705555c
+    - from: reviewing
+      to: approved
+      actor: editor-chief    # 7ba899bd-9e47-43d6-8f82-9940839f157c
+    - from: reviewing
+      to: drafting
+      actor: author-draft    # a054c330-d1a7-445c-b9da-94b8564970b2
+      note: "审核不通过，退回修订"
+    - from: approved
+      to: committed
+      actor: editor-chief    # 7ba899bd-9e47-43d6-8f82-9940839f157c
+    - from: committed
+      to: closed
+      actor: editor-chief    # 7ba899bd-9e47-43d6-8f82-9940839f157c
+
+# ===== Mention 语法速查 =====
+# multica 使用 Markdown link + mention:// scheme 路由，纯文本 @ 不生效
+#
+# Agent mention（任务消息中使用）:
+#   [@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c) 创建章节 ch-01 开发 Issue
+#   [@作者](mention://agent/a054c330-d1a7-445c-b9da-94b8564970b2) 基于验收标准写作初稿
+#   [@审稿人](mention://agent/6586d624-bd24-4af2-884c-2ce54705555c) 执行 lint-check
+#   [@研究员](mention://agent/4828ea52-91fe-4422-b101-b3504d28b82c) 搜索相关资料
+#   [@案例师](mention://agent/2eb4c3b6-d91c-4372-9245-61769ab1032b) 开发案例
+#   [@插画师](mention://agent/2f0e9417-105a-4607-8ee3-9dd26527f578) 绘制流程图
+#
+# Issue mention（关联 Issue 时使用）:
+#   [WS-123](mention://issue/<issue-uuid>)

@@ -10,8 +10,17 @@
 
 | 文件 | 用途 | 何时加载 |
 |------|------|---------|
-| `workflow-config.md` | 工作流全局配置：Agent 表、Skill 表、流程图、协作语法、lint 摘要 | 了解协作流程 / 启动新任务时 |
+| `workflow-config.md` | 工作流全局配置：Agent 表、Skill 表、流程图、协作语法、lint 摘要、异常回退规则、执行日志规范 | 了解协作流程 / 启动新任务时 |
 | `tdd-template.md` | TDD 验收标准模板：YAML 模板、验证流程、验收报告模板、Issue 模板 | 创建章节任务 / 定义验收标准时 |
+
+### 关联的 process 文件
+
+| 文件 | 用途 | 何时加载 |
+|------|------|---------|
+| `../../process/issue-protocol.md` | Issue 编号、状态流转、门禁规则 | 创建/管理 Issue 时 |
+| `../../process/git-convention.md` | 分支、commit、PR 规范 | Git 操作时 |
+| `../../process/quality-gate.md` | 各阶段准入/准出条件 | 阶段切换时 |
+| `../../process/tool-compatibility.md` | 多工具兼容协议 | 切换工具 / 防腐化检查时 |
 
 ## 核心流程概要
 
@@ -39,5 +48,6 @@
 
 - 修改流程步骤须同步更新 `workflow-config.md` 中的流程图
 - 修改 TDD 模板须检查 `../skills/review-quality.md` 的验证逻辑是否匹配
-- 流程变更须通知所有相关 Agent 定义文件（`../agents/`）
+- 流程变更须通知所有相关 Agent 定义文件（`../agents/`）**及 `../agents/manifest.yaml` transitions 段**
 - 新增工作流模板：创建文件 → 更新本文件清单
+- 修改门禁/回退规则须同步 `../../process/quality-gate.md`

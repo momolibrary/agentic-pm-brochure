@@ -1,3 +1,11 @@
+---
+skill_id: case-develop
+skill_uuid: "626fa367-c31e-444d-9304-81106944620b"
+callers:
+  - case-writer     # 2eb4c3b6-d91c-4372-9245-61769ab1032b
+registry: ../agents/manifest.yaml
+---
+
 # Skill: case-develop
 
 案例开发与设计能力
@@ -56,7 +64,9 @@
 
 ## Mention 语法
 
+multica 使用 `mention://` 协议路由，纯文本 `@` 不生效。
+
 ```
-@case-writer 开发 [主题] 案例
-@case-writer 为 [章节] 设计反例场景
+[@案例师](mention://agent/2eb4c3b6-d91c-4372-9245-61769ab1032b) 开发 [主题] 案例
+[@案例师](mention://agent/2eb4c3b6-d91c-4372-9245-61769ab1032b) 为 [章节] 设计反例场景
 ```

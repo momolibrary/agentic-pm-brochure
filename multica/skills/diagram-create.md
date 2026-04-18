@@ -1,3 +1,15 @@
+---
+skill_id: diagram-create
+skill_uuid: "ba1ae40b-16b0-4339-a431-4ac54e8ab4da"
+callers:
+  - illustrator     # 2f0e9417-105a-4607-8ee3-9dd26527f578
+external_deps:
+  - tool: glm-image
+    required: false
+    fallback: "mermaid markdown"
+registry: ../agents/manifest.yaml
+---
+
 # Skill: diagram-create
 
 插图与流程图绘制能力
@@ -48,7 +60,9 @@
 
 ## Mention 语法
 
+multica 使用 `mention://` 协议路由，纯文本 `@` 不生效。
+
 ```
-@illustrator 绘制 [描述] 流程图
-@illustrator 为 [章节] 创建架构图
+[@插画师](mention://agent/2f0e9417-105a-4607-8ee3-9dd26527f578) 绘制 [描述] 流程图
+[@插画师](mention://agent/2f0e9417-105a-4607-8ee3-9dd26527f578) 为 [章节] 创建架构图
 ```

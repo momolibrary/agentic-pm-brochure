@@ -1,3 +1,13 @@
+---
+agent_id: author-draft
+agent_uuid: "a054c330-d1a7-445c-b9da-94b8564970b2"
+mention: "[@作者](mention://agent/a054c330-d1a7-445c-b9da-94b8564970b2)"
+skills:
+  - chapter-draft    # e3a93712-a72c-4ce9-9291-44008951d565
+  - term-lookup      # 8ccb36b5-c098-4581-b94d-d4727f34a49d
+registry: manifest.yaml
+---
+
 # Agent: author-draft
 
 作者角色
@@ -31,8 +41,10 @@
 
 ## 协作语法
 
+multica 使用 `mention://` 协议路由消息，纯文本 `@` 不生效。
+
 ```
-@author-draft 基于验收标准写作 [章节名] 初稿
-@author-draft 修订 [章节名] 第 [N] 部分
-@author-draft 查询术语 [术语名] 定义
+[@作者](mention://agent/a054c330-d1a7-445c-b9da-94b8564970b2) 基于验收标准写作 [章节名] 初稿
+[@作者](mention://agent/a054c330-d1a7-445c-b9da-94b8564970b2) 修订 [章节名] 第 [N] 部分
+[@作者](mention://agent/a054c330-d1a7-445c-b9da-94b8564970b2) 查询术语 [术语名] 定义
 ```

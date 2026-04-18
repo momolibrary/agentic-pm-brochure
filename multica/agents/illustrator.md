@@ -1,3 +1,12 @@
+---
+agent_id: illustrator
+agent_uuid: "2f0e9417-105a-4607-8ee3-9dd26527f578"
+mention: "[@插画师](mention://agent/2f0e9417-105a-4607-8ee3-9dd26527f578)"
+skills:
+  - diagram-create   # ba1ae40b-16b0-4339-a431-4ac54e8ab4da
+registry: manifest.yaml
+---
+
 # Agent: illustrator
 
 插图师角色
@@ -29,8 +38,10 @@
 
 ## 协作语法
 
+multica 使用 `mention://` 协议路由消息，纯文本 `@` 不生效。
+
 ```
-@illustrator 绘制 [描述] 流程图
-@illustrator 为 [章节] 创建架构图
-@illustrator 制作 [主题] 对比图
+[@插画师](mention://agent/2f0e9417-105a-4607-8ee3-9dd26527f578) 绘制 [描述] 流程图
+[@插画师](mention://agent/2f0e9417-105a-4607-8ee3-9dd26527f578) 为 [章节] 创建架构图
+[@插画师](mention://agent/2f0e9417-105a-4607-8ee3-9dd26527f578) 制作 [主题] 对比图
 ```

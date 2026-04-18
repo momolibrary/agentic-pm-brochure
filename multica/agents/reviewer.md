@@ -1,3 +1,14 @@
+---
+agent_id: reviewer
+agent_uuid: "6586d624-bd24-4af2-884c-2ce54705555c"
+mention: "[@审稿人](mention://agent/6586d624-bd24-4af2-884c-2ce54705555c)"
+skills:
+  - lint-check       # d9f5ed84-0b61-43a3-86f0-488403d3b8d9
+  - review-quality   # 850b316e-e735-4664-a7a8-b454604c003b
+  - term-lookup      # 8ccb36b5-c098-4581-b94d-d4727f34a49d
+registry: manifest.yaml
+---
+
 # Agent: reviewer
 
 审稿人角色
@@ -34,8 +45,10 @@
 
 ## 协作语法
 
+multica 使用 `mention://` 协议路由消息，纯文本 `@` 不生效。
+
 ```
-@reviewer 执行 lint-check 检查 [章节]
-@reviewer 执行 review-quality 审核 [章节]
-@reviewer 检查 [章节] 术语一致性
+[@审稿人](mention://agent/6586d624-bd24-4af2-884c-2ce54705555c) 执行 lint-check 检查 [章节]
+[@审稿人](mention://agent/6586d624-bd24-4af2-884c-2ce54705555c) 执行 review-quality 审核 [章节]
+[@审稿人](mention://agent/6586d624-bd24-4af2-884c-2ce54705555c) 检查 [章节] 术语一致性
 ```

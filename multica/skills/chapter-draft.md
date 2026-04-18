@@ -1,3 +1,11 @@
+---
+skill_id: chapter-draft
+skill_uuid: "e3a93712-a72c-4ce9-9291-44008951d565"
+callers:
+  - author-draft   # a054c330-d1a7-445c-b9da-94b8564970b2
+registry: ../agents/manifest.yaml
+---
+
 # Skill: chapter-draft
 
 章节初稿写作能力
@@ -40,11 +48,13 @@
 
 ## 依赖
 
-- `term-lookup`：术语查询
-- `case-develop`：案例引用
+- `term-lookup`：术语查询（运行时调用）
+- 案例素材：由 [@案例师](mention://agent/2eb4c3b6-d91c-4372-9245-61769ab1032b) 在写作阶段前准备，存放于 `assets/cases/` 或 `manuscript/cases/`（非运行时依赖，通过工作流时序保证）
 
 ## Mention 语法
 
+multica 使用 `mention://` 协议路由，纯文本 `@` 不生效。
+
 ```
-@author-draft 请基于验收标准写作 [章节名] 初稿
+[@作者](mention://agent/a054c330-d1a7-445c-b9da-94b8564970b2) 请基于验收标准写作 [章节名] 初稿
 ```

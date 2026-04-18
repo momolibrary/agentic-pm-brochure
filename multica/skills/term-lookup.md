@@ -1,3 +1,12 @@
+---
+skill_id: term-lookup
+skill_uuid: "8ccb36b5-c098-4581-b94d-d4727f34a49d"
+callers:
+  - author-draft    # a054c330-d1a7-445c-b9da-94b8564970b2
+  - reviewer        # 6586d624-bd24-4af2-884c-2ce54705555c
+registry: ../agents/manifest.yaml
+---
+
 # Skill: term-lookup
 
 术语表查询与维护能力
@@ -44,7 +53,9 @@
 
 ## Mention 语法
 
+multica 使用 `mention://` 协议路由，纯文本 `@` 不生效。
+
 ```
-@reviewer 查询术语 [术语名]
-@author-draft 确认术语 [术语名] 定义
+[@审稿人](mention://agent/6586d624-bd24-4af2-884c-2ce54705555c) 查询术语 [术语名]
+[@作者](mention://agent/a054c330-d1a7-445c-b9da-94b8564970b2) 确认术语 [术语名] 定义
 ```

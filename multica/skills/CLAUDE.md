@@ -53,7 +53,7 @@ research-search    （无外部依赖）
 
 ## 修改规则
 
-- 修改 Skill 输入/输出契约时，须通知所有调用方 Agent（见上表「调用者」列）
+- 修改 Skill 输入/输出契约时，须通知所有调用方 Agent（见上表「调用者」列）**且同步更新 `../agents/manifest.yaml`**
 - 修改依赖的 `standards/` 文件后，须检查依赖该标准的 Skill 是否需调整
-- 新增 Skill 后：更新本文件清单 → 更新 `../CLAUDE.md` 索引 → 绑定到对应 Agent 定义
-- 删除 Skill 时：检查所有 Agent 的能力绑定 → 反向清理引用
+- 新增 Skill 后：`../agents/manifest.yaml` 新增条目 → 创建 Skill 文件（含 frontmatter）→ 更新本文件清单 → 更新 `../CLAUDE.md` 索引 → 绑定到对应 Agent 定义
+- 删除 Skill 时：检查所有 Agent 的能力绑定 → 更新 `../agents/manifest.yaml` → 反向清理引用

@@ -1,3 +1,15 @@
+---
+skill_id: research-search
+skill_uuid: "bafcf7de-d91d-443e-971a-8cf42932d145"
+callers:
+  - researcher      # 4828ea52-91fe-4422-b101-b3504d28b82c
+external_deps:
+  - tool: tavily
+    required: true
+    config_ref: "TAVILY_API_KEY"
+registry: ../agents/manifest.yaml
+---
+
 # Skill: research-search
 
 资料搜索与整理能力
@@ -39,7 +51,9 @@
 
 ## Mention 语法
 
+multica 使用 `mention://` 协议路由，纯文本 `@` 不生效。
+
 ```
-@researcher 搜索 [主题] 相关资料
-@researcher 为 [章节] 提供类比素材
+[@研究员](mention://agent/4828ea52-91fe-4422-b101-b3504d28b82c) 搜索 [主题] 相关资料
+[@研究员](mention://agent/4828ea52-91fe-4422-b101-b3504d28b82c) 为 [章节] 提供类比素材
 ```

@@ -12,7 +12,8 @@
 |------|------|---------|
 | `style-guide.md` | 文风指南：核心原则、句长限制、幽默控制、人物一致性、10 要素文风 | 写作 / 审核时 |
 | `term-glossary.md` | 术语表：标准译名、定义、类比说明、禁用表达 | 写作 / 审核 / 术语查询时 |
-| `lint-rules.yaml` | 自动检查规则：文风 / 术语 / 结构三类检查项及阈值 | 执行 lint 检查时 |
+| `lint-rules.yaml` | 自动检查规则（机器可解析 YAML）：文风 / 术语 / 结构检查项及阈值 | 执行 lint 检查时 |
+| `lint-rules-guide.md` | Lint 规则人类可读说明（详细解释每条规则的用法和示例） | 理解 lint 规则时 |
 
 ## 关键约束摘要
 
@@ -23,9 +24,9 @@
 | 句长上限 | ≤ 30 字 | style-guide.md |
 | 幽默等级 | 1-3（不超过 3） | style-guide.md |
 | 禁用空话词 | 赋能、抓手、闭环、沉淀、对齐 等 | style-guide.md / term-glossary.md |
-| 老李人设 | 资深工程师，≥10 年经验，耐心但直接 | term-glossary.md |
-| 小想人设 | 产品经理，2-3 年经验，聪明但缺工程常识 | term-glossary.md |
-| 章节结构 | 10 要素（标题→引入场景→概念引出→核心讲解→类比解释→案例→常见误区→实操建议→延伸思考→章节小结） | style-guide.md |
+| 老李人设 | 40+岁产品总监，≥15 年经验，不会写代码，靠判断力和全局观 | project-definition.md / term-glossary.md |
+| 小想人设 | 22 岁实习生，AI 原生代，敢动手但缺经验和判断力 | project-definition.md / term-glossary.md |
+| 章节结构 | 10 要素（问题定义→业务场景→核心概念→PM误解→开发视角→PM行动→AI辅助→Checklist→案例复盘→总结） | style-guide.md |
 
 ## 三文件联动关系
 

@@ -292,7 +292,7 @@ quality_threshold:
 [低/适中/高]
 
 ## Assignee
-@author-draft
+[@作者](mention://agent/a054c330-d1a7-445c-b9da-94b8564970b2)
 
 ## 参考
 - [相关资料链接]
