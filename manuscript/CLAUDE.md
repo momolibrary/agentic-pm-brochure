@@ -31,6 +31,7 @@
 |------|---------|------|-----------|
 | CH-01 | `chapters/CH-01-数据基础.md` | approved | — |
 | CH-02 | `chapters/CH-02-数据流转与约束.md` | lint-review | [PMB-8](mention://issue/a23565b6-2524-4a70-b954-bf43e402973a) |
+| CH-15 | `chapters/CH-15-状态基础与约束.md` | drafting | [PMB-21](mention://issue/fea4afe8-f5cd-4e0e-96f2-7e55fc4ab1e0) |
 
 ## 章节状态定义
 
