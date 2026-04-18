@@ -27,6 +27,12 @@
 - 不得跳过 TDD 验收标准直接写稿
 
 ### multica CLI
+
+> **multica 是本地安装的命令行工具**（`/opt/homebrew/bin/multica`），不是文件夹、不是网站、不需要联网搜索。
+> 完整操作手册见 **`process/multica-cli.md`**。
+
+- **双写规则**：修改 Agent/Skill 时必须同时更新仓库文件和 multica 服务端（`multica skill update`）
+- **Workspace 隔离**：本项目 workspace ID 为 `38f948e7-3827-40d0-b3ea-519c39440bf7`，所有命令必须指定 `--workspace-id`
 - 必须通过 `manifest.yaml` 注册的 UUID 路由消息
 - Agent 间通信必须使用 `[@显示名](mention://agent/<uuid>) {任务}` 格式
 - **纯文本 `@agent-name` 不会被 multica 路由**
@@ -51,6 +57,8 @@
 - [ ] `manifest.yaml` 中的 Skill ID 与 `multica/skills/*.md` 文件一一对应
 - [ ] 每个 Agent 文件的 frontmatter `agent_id` 与 manifest 一致
 - [ ] 每个 Skill 文件的 frontmatter `skill_id` 与 manifest 一致
+- [ ] **multica 服务端 skill 内容与仓库文件一致**（`multica skill list --workspace-id 38f948e7-...`）
+- [ ] **操作在正确的 workspace**（pm-brochure: `38f948e7-3827-40d0-b3ea-519c39440bf7`）
 
 ### 规则一致性
 - [ ] `standards/CLAUDE.md` 摘要与 `style-guide.md`、`term-glossary.md`、`lint-rules.yaml` 一致
