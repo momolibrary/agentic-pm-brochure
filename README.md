@@ -40,13 +40,27 @@ agentic-pm-brochure/
 
 ## 当前进度
 
-- [x] 项目定义
-- [ ] 读者画像与能力模型
-- [ ] 全书框架与目录设计
-- [ ] 写作模板与TDD验收标准
-- [ ] 样章开发与验证
-- [ ] 案例库建设
-- [ ] 全书批量写作
+### 基础设施（已完成）
+
+- [x] 项目定义（`docs/project-definition.md`）
+- [x] 读者画像与价值主张画布（`docs/价值主张画布.md`）
+- [x] 知识点地图 V2.0（`docs/知识点地图.md`，三大域 20 模块 130+ 知识点，含批量写作并行度规划）
+- [x] 文风指南（`standards/style-guide.md`，10 要素章节结构 + 文风规范）
+- [x] 术语表（`standards/term-glossary.md`，50+ 术语定义）
+- [x] Lint 规则体系（`standards/lint-rules.yaml` + `lint-rules-guide.md`）
+- [x] Issue 管理协议（`process/issue-protocol.md`，6 状态流转 + 门禁规则）
+- [x] Git 规范（`process/git-convention.md`）
+- [x] 质量门禁（`process/quality-gate.md`，5 级质量门）
+- [x] 产物交接协议（`process/artifact-handoff.md`）
+- [x] AI 多智能体系统 multica（6 Agent + 7 Skill + 工作流编排）
+- [x] TDD 验收标准模板（`multica/workflows/tdd-template.md`）
+
+### 内容开发（待启动）
+
+- [ ] 写作模板与 TDD 验收标准制定（为知识点地图的章节生成具体 Issue）
+- [ ] 样章开发与验证（ch-01 试跑完整 TDD 工作流）
+- [ ] 案例库建设（`assets/cases/`）
+- [ ] 全书批量写作（50 章，11 批次并行）
 - [ ] 统稿与结构优化
 - [ ] 试读反馈与迭代
 
