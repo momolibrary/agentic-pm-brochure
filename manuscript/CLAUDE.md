@@ -29,7 +29,8 @@
 
 | 编号 | 章节文件 | 状态 | TDD Issue |
 |------|---------|------|-----------|
-| — | （暂无） | — | — |
+| CH-01 | `chapters/CH-01-数据基础.md` | approved | — |
+| CH-02 | `chapters/CH-02-数据流转与约束.md` | lint-review | [PMB-8](mention://issue/a23565b6-2524-4a70-b954-bf43e402973a) |
 
 ## 章节状态定义
 
