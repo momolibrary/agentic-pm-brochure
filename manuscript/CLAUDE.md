@@ -33,6 +33,7 @@
 | CH-02 | `chapters/CH-02-数据流转与约束.md` | lint-review | [PMB-8](mention://issue/a23565b6-2524-4a70-b954-bf43e402973a) |
 | CH-06 | `chapters/CH-06-API设计原则与常见问题.md` | drafting | [PMB-12](mention://issue/2d617b72-67ff-4d9d-af1f-678aae6e05ec) |
 | CH-12 | `chapters/CH-12-权限基础.md` | drafting | [PMB-18](mention://issue/4b9071f4-605c-4ac1-92fe-a17633dcda89) |
+| CH-21 | `chapters/ch-21-mvc-架构模式与cqrs.md` | drafting | [PMB-27](mention://issue/512b4cdd-8f13-4fa3-8f5d-81c2d75ef6b3) |
 
 ## 章节状态定义
 
