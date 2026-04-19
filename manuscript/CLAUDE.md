@@ -32,6 +32,7 @@
 | CH-01 | `chapters/CH-01-数据基础.md` | approved | — |
 | CH-02 | `chapters/CH-02-数据流转与约束.md` | lint-review | [PMB-8](mention://issue/a23565b6-2524-4a70-b954-bf43e402973a) |
 | CH-06 | `chapters/CH-06-API设计原则与常见问题.md` | drafting | [PMB-12](mention://issue/2d617b72-67ff-4d9d-af1f-678aae6e05ec) |
+| CH-09 | `chapters/CH-09-活动定义与流程架构.md` | drafting | [PMB-15](mention://issue/5f0daa79-819d-4583-ab69-6c757af1c826) |
 | CH-12 | `chapters/CH-12-权限基础.md` | drafting | [PMB-18](mention://issue/4b9071f4-605c-4ac1-92fe-a17633dcda89) |
 
 ## 章节状态定义
