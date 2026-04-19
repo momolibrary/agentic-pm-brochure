@@ -33,7 +33,7 @@
 | CH-02 | `chapters/CH-02-数据流转与约束.md` | lint-review | [PMB-8](mention://issue/a23565b6-2524-4a70-b954-bf43e402973a) |
 | CH-06 | `chapters/CH-06-API设计原则与常见问题.md` | drafting | [PMB-12](mention://issue/2d617b72-67ff-4d9d-af1f-678aae6e05ec) |
 | CH-12 | `chapters/CH-12-权限基础.md` | drafting | [PMB-18](mention://issue/4b9071f4-605c-4ac1-92fe-a17633dcda89) |
-| CH-13 | `chapters/CH-13-数据权限与继承.md` | skeleton | [PMB-19](mention://issue/ab0f35c4-9a34-471e-a60c-e8600abf11f1) |
+| CH-13 | `chapters/CH-13-数据权限与继承.md` | approved | [PMB-19](mention://issue/ab0f35c4-9a34-471e-a60c-e8600abf11f1) |
 
 ## 章节状态定义
 
