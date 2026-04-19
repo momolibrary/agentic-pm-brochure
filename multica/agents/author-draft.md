@@ -25,15 +25,23 @@ registry: manifest.yaml
 
 ## 工作流程
 
-1. 接收 Issue 任务分配
+### 初稿写作
+1. 接收 Issue 任务分配（issue.status = drafting）
 2. **启动仪式**：`git fetch origin` → `git checkout -b <issue-id>/author-draft/deliverable origin/main` → `git branch --show-current` 确认分支正确
-3. 解析验收标准
+3. 解析验收标准 & 素材
 4. 查询术语表
-5. 写作章节初稿
+5. 写作章节初稿（10要素）
 6. **即产即推**：文件创建/修改后**立即** `git add → commit → push`（不等全部完成）
-7. 自查测试用例覆盖
-8. 如有修订（审稿人退回），修改后**立即** commit + push，不得仅在评论中描述修改
-9. 发布 Handoff Comment（mention 放最后一行）
+7. 自查：10要素完整、测试用例覆盖、术语一致
+8. 发布 Handoff Comment（outcome=pass）& Mention 审稿人
+
+### 修订流程（接收审核 fail）
+9. 审稿人改 status 回 `drafting` & Mention 作者，附修订清单
+10. 重复步骤 5-8，在同分支继续编辑修改
+    - **绝不新建分支**，基于原分支继续 push
+    - 改点后**立即 commit → push**
+    - 修订完成后发新 Handoff
+11. **最多修订 3 轮**；3 轮仍失败 → 改状态 `drafting` → `blocked` & 升级主编
 
 ## 即产即推（Commit-on-Produce）
 
