@@ -37,6 +37,7 @@
 | CH-07 | `chapters/CH-07-流程基础.md` | committed | [PMB-13](mention://issue/7c9e28bc-8ca2-4759-9712-54317c057d7e) |
 | CH-11 | `chapters/CH-11-流程治理与行业标准.md` | revision | [PMB-17](mention://issue/96d382df-42d5-487a-829d-cfcce1a6a597) |
 | CH-12 | `chapters/CH-12-权限基础.md` | drafting | [PMB-18](mention://issue/4b9071f4-605c-4ac1-92fe-a17633dcda89) |
+| CH-13 | `chapters/CH-13-数据权限与继承.md` | approved | [PMB-19](mention://issue/ab0f35c4-9a34-471e-a60c-e8600abf11f1) |
 
 ## 章节状态定义
 
@@ -44,6 +45,7 @@
 |------|------|-----------|----------------|
 | `planned` | 已规划，未创建 Issue | [@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c) | — |
 | `issue-created` | Issue 已创建，含验收标准 | [@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c) | open |
+| `skeleton` | 主编大纲骨架，待研究员补充 | [@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c) | in_progress |
 | `researching` | 素材搜索中 | [@研究员](mention://agent/4828ea52-91fe-4422-b101-b3504d28b82c) | researching |
 | `drafting` | 初稿写作中 | [@作者](mention://agent/a054c330-d1a7-445c-b9da-94b8564970b2) | drafting |
 | `lint-review` | Lint 检查中 | [@审稿人](mention://agent/6586d624-bd24-4af2-884c-2ce54705555c) | reviewing |
