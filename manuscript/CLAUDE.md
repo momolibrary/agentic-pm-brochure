@@ -39,10 +39,11 @@
 | CH-12 | `chapters/CH-12-权限基础.md` | drafting | [PMB-18](mention://issue/4b9071f4-605c-4ac1-92fe-a17633dcda89) |
 | CH-13 | `chapters/CH-13-数据权限与继承.md` | approved | [PMB-19](mention://issue/ab0f35c4-9a34-471e-a60c-e8600abf11f1) |
 | CH-15 | `chapters/CH-15-状态基础与约束.md` | approved | [PMB-21](mention://issue/fea4afe8-f5cd-4e0e-96f2-7e55fc4ab1e0) |
+| CH-17 | `chapters/CH-17-验收与测试.md` | approved | [PMB-23](mention://issue/ce802795-2c31-4127-bf4b-2e8b5c9b1175) |
 
 ## 章节状态定义
 
-| 状态 | 含义 | 责任 Agent | 对应 Issue 状态 |
+| 状态 | 含义 | 任 Agent | 对应 Issue 状态 |
 |------|------|-----------|----------------|
 | `planned` | 已规划，未创建 Issue | [@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c) | — |
 | `issue-created` | Issue 已创建，含验收标准 | [@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c) | open |
