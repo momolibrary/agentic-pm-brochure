@@ -31,7 +31,14 @@
 |------|---------|------|-----------|
 | CH-01 | `chapters/CH-01-数据基础.md` | approved | — |
 | CH-02 | `chapters/CH-02-数据流转与约束.md` | lint-review | [PMB-8](mention://issue/a23565b6-2524-4a70-b954-bf43e402973a) |
-| CH-15 | `chapters/CH-15-状态基础与约束.md` | drafting | [PMB-21](mention://issue/fea4afe8-f5cd-4e0e-96f2-7e55fc4ab1e0) |
+| CH-04 | `chapters/CH-04-接口基础.md` | drafting | [PMB-10](mention://issue/4c7e34e3-4b4d-489f-bcde-6f2bfb2706da) |
+| CH-06 | `chapters/CH-06-API设计原则与常见问题.md` | drafting | [PMB-12](mention://issue/2d617b72-67ff-4d9d-af1f-678aae6e05ec) |
+| CH-07 | `chapters/CH-07-流程基础.md` | committed | [PMB-13](mention://issue/7c9e28bc-8ca2-4759-9712-54317c057d7e) |
+| CH-09 | `chapters/CH-09-活动定义与流程架构.md` | drafting | [PMB-15](mention://issue/5f0daa79-819d-4583-ab69-6c757af1c826) |
+| CH-11 | `chapters/CH-11-流程治理与行业标准.md` | revision | [PMB-17](mention://issue/96d382df-42d5-487a-829d-cfcce1a6a597) |
+| CH-12 | `chapters/CH-12-权限基础.md` | drafting | [PMB-18](mention://issue/4b9071f4-605c-4ac1-92fe-a17633dcda89) |
+| CH-13 | `chapters/CH-13-数据权限与继承.md` | approved | [PMB-19](mention://issue/ab0f35c4-9a34-471e-a60c-e8600abf11f1) |
+| CH-15 | `chapters/CH-15-状态基础与约束.md` | approved | [PMB-21](mention://issue/fea4afe8-f5cd-4e0e-96f2-7e55fc4ab1e0) |
 
 ## 章节状态定义
 
@@ -39,6 +46,7 @@
 |------|------|-----------|----------------|
 | `planned` | 已规划，未创建 Issue | [@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c) | — |
 | `issue-created` | Issue 已创建，含验收标准 | [@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c) | open |
+| `skeleton` | 主编大纲骨架，待研究员补充 | [@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c) | in_progress |
 | `researching` | 素材搜索中 | [@研究员](mention://agent/4828ea52-91fe-4422-b101-b3504d28b82c) | researching |
 | `drafting` | 初稿写作中 | [@作者](mention://agent/a054c330-d1a7-445c-b9da-94b8564970b2) | drafting |
 | `lint-review` | Lint 检查中 | [@审稿人](mention://agent/6586d624-bd24-4af2-884c-2ce54705555c) | reviewing |
