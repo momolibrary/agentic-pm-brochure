@@ -52,8 +52,9 @@
 **责任人**: [@作者](mention://agent/a054c330-d1a7-445c-b9da-94b8564970b2)
 **不通过**: 自行修订后重新提交
 
-## Gate 4: 审核准出 → 进入终审
+## Gate 4: 审核完成 → 状态转移
 
+### 通过审核（outcome: pass）
 | 检查项 | 必须 | 验证方式 |
 |--------|------|----------|
 | lint-check 通过（无 error） | ✅ | lint-check skill 执行 |
@@ -62,20 +63,62 @@
 | 结构完整性通过 | ✅ | chapter-structure rule |
 | 图示已完成（如需） | 按需 | [@插画师](mention://agent/2f0e9417-105a-4607-8ee3-9dd26527f578) 产出 |
 
-**责任人**: [@审稿人](mention://agent/6586d624-bd24-4af2-884c-2ce54705555c)
-**不通过**: 退回 [@作者](mention://agent/a054c330-d1a7-445c-b9da-94b8564970b2) 修订，附具体修订清单，最多 3 轮
+**责任人**: [@审稿人](mention://agent/6586d624-bd24-4af2-884c-2ce54705555c)  
+**动作**：
+1. 发布 Handoff 评论，outcome=**pass**
+2. 自行改 issue status: `reviewing` → `approved`
+3. Mention [@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c) 执行终审
 
-## Gate 5: 终审准出 → Git 提交
+### 审核失败（outcome: fail）  
+| 检查项 | 状态 |
+|--------|------|
+| 修复项≤2项 | 二次机会（返回 drafting） |
+| 修复项>2项 或 同项连续失败 | 三次重审后升级 |
+
+**责任人**: [@审稿人](mention://agent/6586d624-bd24-4af2-884c-2ce54705555c)  
+**动作**：
+1. 发布 Handoff 评论，outcome=**fail**，附**明确修订清单**（列项目、原因、建议）
+2. 自行改 issue status: `reviewing` → `drafting`
+3. Mention [@作者](mention://agent/a054c330-d1a7-445c-b9da-94b8564970b2) 修订，最多 3 轮
+4. 3 轮仍失败：改 status 为 `blocked`，Mention [@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c) 介入
+
+### 无法修补（outcome: blocked）
+- 改 issue status: `reviewing` → `blocked`
+- Mention [@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c) 及人工决策
+
+## Gate 5: approved → committed (主编终审)
 
 | 检查项 | 必须 | 验证方式 |
 |--------|------|---------|
-| Gate 4 全部通过 | ✅ | 验收报告确认 |
-| 人类已确认终审 | ✅ | editor-chief 请求确认 |
-| commit message 符合规范 | ✅ | `[ISSUE-ID] 动作描述` |
-| PR 已创建并关联 Issue | ✅ | GitHub PR |
+| Gate 4 全部通过（outcome=pass） | ✅ | 审稿人 Handoff 确认 |
+| 主编仲裁通过 | ✅ | 主编自行基于远端分支审核 |
+| 人类已确认最终审核 | ✅ | 人机协作确认 |
 
-**责任人**: [@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c)
-**不通过**: 退回 Gate 4 重新审核
+**责任人**: [@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c)  
+**动作**：
+1. 接收审稿人 Handoff（outcome=pass）
+2. 基于远端分支 git diff 再审一遍
+3. **若同意**：改 status `approved` → `committed`，发 Handoff 说明 Git 合并准备好
+4. **若不同意**：改 status `approved` → `reviewing`，mention 审稿人说明反驳原因
+5. **最多 1 轮反驳**；若再失败则人工介入
+
+## Gate 6: committed → closed (Git 提交 & 关闭)
+
+| 检查项 | 必须 | 验证方式 |
+|--------|------|---------|
+| PR 已创建 | ✅ | GitHub PR + Issue 关联 |
+| 人类已批准合并 | ✅ | 人机协作确认 |
+| commit message 符合规范 | ✅ | `[ISSUE-ID] 动作描述` |
+| 分支已删除 | ✅ | Git 清理 |
+
+**责任人**: [@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c)  
+**动作**：
+1. 创建 PR：`origin/<deliverable-branch>` → `main`
+2. 请求人类最终审批
+3. 人类批准后：`git merge && git push`
+4. 删除交付分支：`git branch -D <branch> && git push origin --delete <branch>`
+5. 改 status `committed` → `closed`
+6. 归档本次发布日志
 
 ## 回退规则
 
