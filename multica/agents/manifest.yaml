@@ -176,14 +176,20 @@ workflow:
       actor: reviewer        # 6586d624-bd24-4af2-884c-2ce54705555c
     - from: reviewing
       to: approved
-      actor: editor-chief    # 7ba899bd-9e47-43d6-8f82-9940839f157c
+      actor: reviewer        # 6586d624-bd24-4af2-884c-2ce54705555c
+      note: "通过审核，转移至主编终审（outcome: pass）"
     - from: reviewing
       to: drafting
-      actor: author-draft    # a054c330-d1a7-445c-b9da-94b8564970b2
-      note: "审核不通过，退回修订"
+      actor: reviewer        # 6586d624-bd24-4af2-884c-2ce54705555c
+      note: "审核不通过，退回作者修订（outcome: fail 附修订清单）"
     - from: approved
       to: committed
       actor: editor-chief    # 7ba899bd-9e47-43d6-8f82-9940839f157c
+      note: "最终确认，准备 Git 提交"
+    - from: approved
+      to: reviewing
+      actor: editor-chief    # 7ba899bd-9e47-43d6-8f82-9940839f157c
+      note: "主编反驳，需要重审"
     - from: committed
       to: closed
       actor: editor-chief    # 7ba899bd-9e47-43d6-8f82-9940839f157c

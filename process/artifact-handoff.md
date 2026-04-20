@@ -193,6 +193,7 @@ Agent 完成工作后，**必须**在 Issue 中发布如下格式的评论：
 **分支**: `ch-01/author-draft/deliverable`
 **提交**: `a1b2c3d` — <commit message>
 **基底**: `main@e4f5g6h`
+**结果**: `pass` | `fail` | `blocked`  （✅ 必填，决定下一阶段）
 
 ### 变更文件
 | 文件 | 操作 | 行数 |
@@ -218,10 +219,19 @@ Agent 完成工作后，**必须**在 Issue 中发布如下格式的评论：
 ### 格式要求
 
 - **`## 🔀 Handoff:`** 前缀是必须的，用于机器解析识别
-- **分支名**和**提交 SHA** 是必填字段
+- **分支名**、**提交 SHA**、**结果（pass/fail/blocked）** 是**必填字段**
 - **变更文件表**至少列出主要文件（可省略 trivial 变更）
 - **自检清单**映射到 `process/quality-gate.md` 的对应门禁
+- **失败或阻止时**：必须附**修订清单**或**阻止理由**
 - **审核请求（mention）必须放在评论最后一行**，遵循「Mention 路由规范」
+
+### 根据结果自动转移职责
+
+| 结果 | Handoff 后需做什么 | 触发谁 |
+|------|------------------|--------|
+| pass | 发布后自行改 issue.status → `approved` | Mention [@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c) |
+| fail | 发布后自行改 issue.status → `drafting`，附修订项 | Mention [@作者](mention://agent/a054c330-d1a7-445c-b9da-94b8564970b2) |
+| blocked | 发布后自行改 issue.status → `blocked` | Mention [@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c) + 人工 |
 
 ---
 
