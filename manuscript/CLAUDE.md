@@ -40,6 +40,7 @@
 | CH-13 | `chapters/CH-13-数据权限与继承.md` | approved | [PMB-19](mention://issue/ab0f35c4-9a34-471e-a60c-e8600abf11f1) |
 | CH-15 | `chapters/CH-15-状态基础与约束.md` | approved | [PMB-21](mention://issue/fea4afe8-f5cd-4e0e-96f2-7e55fc4ab1e0) |
 | CH-17 | `chapters/CH-17-验收与测试.md` | approved | [PMB-23](mention://issue/ce802795-2c31-4127-bf4b-2e8b5c9b1175) |
+| CH-19 | `chapters/CH-19-DDD与TDD.md` | approved | [PMB-25](mention://issue/4fe430cd-8311-4f7d-a4a7-6cfa43cb2a51) |
 
 ## 章节状态定义
 
