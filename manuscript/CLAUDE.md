@@ -42,6 +42,7 @@
 | CH-17 | `chapters/CH-17-验收与测试.md` | approved | [PMB-23](mention://issue/ce802795-2c31-4127-bf4b-2e8b5c9b1175) |
 | CH-19 | `chapters/CH-19-DDD与TDD.md` | approved | [PMB-25](mention://issue/4fe430cd-8311-4f7d-a4a7-6cfa43cb2a51) |
 | CH-21 | `chapters/ch-21-mvc-架构模式与cqrs.md` | approved | [PMB-27](mention://issue/512b4cdd-8f13-4fa3-8f5d-81c2d75ef6b3) |
+| CH-22b | `chapters/CH-22b-Git认知-版本控制基础.md` | drafting | [PMB-35](mention://issue/13376fa5-fd0b-4e0f-907b-8077c97ac110) |
 | CH-26 | `chapters/CH-26-系统成本与切换代价.md` | drafting | [PMB-32](mention://issue/634a2e1b-3658-4f56-858d-317dc6c72795) |
 | CH-32 | `chapters/CH-32-质量把控.md` | drafting | [PMB-38](mention://issue/cc8e75b6-5233-490d-97f2-4b4b4216ca95) |
 | CH-37 | `chapters/CH-37-服务蓝图与商业模式画布.md` | drafting | [PMB-44](mention://issue/c232138d-076c-4aab-b060-af5e721c5547) |
