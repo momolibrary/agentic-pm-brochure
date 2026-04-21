@@ -1,161 +1,108 @@
-# 参考资源：方案预演相关学习资料
+# CH-27 素材汇总与参考资源
 
-> 素材类型：参考资源
-> 知识点：B2模块 方案预演
-> 更新日期：2026-04-21
+> 素材类型：参考资源汇总
+> 知识点：A9-04、A9-05
+> 更新日期：2026-04-19
 
 ---
 
-## 方案预演概念（B2-01）
+## 素材清单
+
+| 文件名 | 类型 |知识点 | 用途 |
+|--------|------|--------|------|
+| `story-it-staffing-crisis.md` | 故事场景 | A9-04 | 人力弹性困境故事锚点 |
+| `story-cross-department-delay.md` | 故事场景 | A9-05 | 组织竖井困境故事锚点 |
+| `analogy-it-not-faucet.md` |类比素材 | A9-04 | IT 不是水龙头类比 |
+| `analogy-band-collaboration.md` |类比素材 | A9-05 | 乐队协作类比 |
+| `diagram-silo-vs-coupled.md` | 图示需求 | A9-05 | 传统竖井 vs 耦合协作对比图 |
+
+---
+
+## 核心参考来源
 
 ### 书籍
 
-| 书名 | 作者 | 出版社 | 推荐理由 |
-|------|------|--------|---------|
-| 《探索需求》 | Gerald Weinberg | Dorset House | 需求验证和确认的经典方法 |
-| 《用户故事地图》 | Jeff Patton | O'Reilly | 需求拆解和可视化验证方法 |
-| 《敏捷软件开发》 | Robert C. Martin | Prentice Hall | 测试驱动开发的核心理念 |
+| 书名 | 作者 | 相关知识点 |
+|------|------|-----------|
+| 《凤凰项目》 | Gene Kim | IT 团队知识连续性、DevOps 转型 |
+| 《独角兽项目》 | Gene Kim | 跨部门协作困境、敏捷转型 |
+| 《DevOps 手册》 | Gene Kim 等 | DevOps 实践、团队协作 |
 
-### 文章
+### 行业研究
 
-| 标题 | 来源 | 链接 | 推荐理由 |
-|------|------|------|---------|
-| Design Reviews Before Implementation | Medium | - | 设计评审最佳实践 |
-| Doc-Driven Development | Various blogs | - | 文档驱动开发理念 |
-| Preview Environments Best Practices | Vercel/Netlify docs | - | 预览环境实践经验 |
+| 来源 | 关键数据 | 相关知识点 |
+|------|----------|-----------|
+| Standish Group Chaos Report | 45% 功能从未使用 | 需求延迟问题 |
+| Bus Factor（Wikipedia） | Bus Factor 定义 | 知识流失风险 |
 
-### 视频课程
+### 技术文章
 
-| 课程名称 | 平台 | 推荐理由 |
-|---------|------|---------|
-| 需求评审与验证 | Bilibili | 需求验证流程和方法 |
-| 低保真原型设计 | Bilibili | 快速验证需求的方法 |
-
----
-
-## AI辅助预演（B2-02）
-
-### 官方文档
-
-| 文档 | 来源 | 链接 | 推荐理由 |
-|------|------|------|---------|
-| Anthropic Prompt Engineering Guide | Anthropic | docs.anthropic.com | Claude提示词最佳实践 |
-| ChatGPT Best Practices | OpenAI | help.openai.com | ChatGPT使用方法 |
-| Prompting Guide | promptingguide.ai | promptingguide.ai | 开源提示工程教程 |
-
-### 视频课程
-
-| 课程名称 | 平台 | 推荐理由 |
-|---------|------|---------|
-| AI辅助产品设计 | Bilibili | AI在产品工作中的应用 |
-| 提示词工程入门 | Bilibili | 如何写出有效的AI提示词 |
-| Cursor AI IDE教程 | Bilibili | AI辅助开发环境使用 |
-
-### 工具
-
-| 工具 | 用途 | 链接 |
-|------|------|------|
-| Claude | AI预演对话 | claude.ai |
-| ChatGPT | AI预演对话 | chat.openai.com |
-| Cursor | AI辅助IDE | cursor.com |
-| v0.dev | AI生成UI原型 | v0.dev |
+| 来源 | 主题 | 相关知识点 |
+|------|------|-----------|
+| Agile Alliance | Software Development and Jazz | 爵士乐队类比 |
+| DZone | Jazz Band vs. Orchestra | 团队协作类比 |
+| DZone | IT Staffing「Just-in-Time」问题 | IT 不是水龙头类比 |
+| GitLab Handbook | Knowledge Sharing & Bus Factor | 知识连续性 |
 
 ---
 
-## 边界检查（B2-03）
+## 核心概念索引
 
-### 书籍
+### A9-04 人力弹性困境
 
-| 书名 | 作者 | 出版社 | 推荐理由 |
-|------|------|--------|---------|
-| 《软件测试》 | Ron Patton | Sams | 边界值分析和测试用例设计 |
-| 《Google软件测试之道》 | James Whittaker | Addison-Wesley | 测试思维和质量文化 |
+| 概念 | 定义 | 素材对应 |
+|------|------|----------|
+| **人力弹性困境** | IT 团队不能像外包一样「有活就招、没活就裁」 | `story-it-staffing-crisis.md` |
+| **Bus Factor** | 团队有多少人的离开会导致项目瘫痪 | `story-it-staffing-crisis.md` |
+| **隐性知识流失** | 人走了，系统上下文和业务积累跟着走 | `analogy-it-not-faucet.md` |
+| **新人上手成本** | 新人能独立产出至少 3 个月 | `story-it-staffing-crisis.md` |
 
-### 文章
+### A9-05 业务+系统+运营耦合
 
-| 标题 | 来源 | 链接 | 推荐理由 |
-|------|------|------|---------|
-| Boundary Value Analysis | ISTQB | - | 边界值分析标准方法 |
-| Edge Case Testing Best Practices | Various | - | 边界场景测试经验 |
-
-### 视频课程
-
-| 课程名称 | 平台 | 推荐理由 |
-|---------|------|---------|
-| 测试用例设计方法 | Bilibili | 边界值分析和等价类划分 |
-| 软件测试入门 | Bilibili | 测试基础概念和方法 |
-
-### 框架
-
-| 框架/方法 | 用途 | 说明 |
-|---------|------|------|
-| 边界值分析 | 测试边界条件 | 识别最大值、最小值、边界值 |
-| 等价类划分 | 测试覆盖优化 | 将输入分成有效和无效等价类 |
-| 状态转换测试 | 状态流转验证 | 验证状态流转的正确性 |
+| 概念 | 定义 | 素材对应 |
+|------|------|----------|
+| **组织竖井** | 部门之间各自为战、沟通成本高 | `story-cross-department-delay.md` |
+| **耦合工作模式** | 业务+系统+运营三角色贴在一起持续协作 | `analogy-band-collaboration.md` |
+| **接力传递** | 需求从业务 → 产品 → IT → 测试 → 运维 | `diagram-silo-vs-coupled.md` |
+| **跨职能小组** | 业务+产品+IT+测试+运营在一个小组 | `diagram-silo-vs-coupled.md` |
 
 ---
 
-## 方案对比（B2-04）
+## 素材使用建议
 
-### 决策框架
+### 故事场景使用
 
-| 框架 | 来源 | 链接 | 推荐理由 |
-|------|------|------|---------|
-| RICE Scoring Model | ProductPlan | productplan.com | 产品优先级评分模型 |
-| Weighted Decision Matrix | ProductPlan | productplan.com | 加权决策矩阵方法 |
-| Kano Model | Various | - | 功能分类和满意度分析 |
-| Value vs Effort Matrix | Various | - | 简单的2x2决策框架 |
-| Opportunity Solution Tree | ProductPlan | productplan.com | 机会-方案可视化工具 |
+1. **开场引入**：用 `story-it-staffing-crisis.md` 作为「人力弹性困境」开场
+2. **误解揭示**：用 `story-cross-department-delay.md` 作为「为什么容易误解」部分
 
-### 文章
+### 类比使用
 
-| 标题 | 来源 | 链接 | 推荐理由 |
-|------|------|------|---------|
-| The Trade-Off Analysis Method for Product Managers | ProductPlan | productplan.com | 权衡分析方法详解 |
-| Decision-Making Frameworks for PMs | Medium | - | 产品决策框架汇总 |
+1. **核心类比**：用「水龙头」类比解释人力弹性困境
+2. **协作类比**：用「乐队」类比解释耦合协作模式
 
-### 书籍
+### 图示使用
 
-| 书名 | 作者 | 出版社 | 推荐理由 |
-|------|------|--------|---------|
-| 《价值主张设计》 | Alexander Osterwalder | Wiley | 价值分析和决策方法 |
-| 《商业模式新生代》 | Alexander Osterwalder | Wiley | 商业分析和方案对比 |
-
-### 视频课程
-
-| 课程名称 | 平台 | 推荐理由 |
-|---------|------|---------|
-| 产品决策框架 | Bilibili | RICE、Kano等决策方法 |
-| 需求优先级排序 | Bilibili | 如何对比和排序方案 |
+1. **对比展示**：用 `diagram-silo-vs-coupled.md` 作为核心图示
+2. **视觉强化**：在「传统模式问题」和「耦合模式优势」章节引用
 
 ---
 
-## 综合学习路径建议
+## 素材质量总评
 
-### 入门路径（P0级读者）
-
-1. 先了解**方案预演概念**（样板间类比）
-2. 学习**AI辅助预演的基本用法**（AI生成效果图类比）
-3. 掌握**边界检查的提问清单**（碰撞测试类比）
-4. 了解**方案对比框架**（装修选方案类比）
-
-### 进阶路径（P1级读者）
-
-1. 深入学习**边界值分析方法**（ISTQB测试方法）
-2. 掌握**加权决策矩阵**的实际应用
-3. 学习**RICE、Kano等决策框架**
-4. 探索**AI预演的高级技巧**（提示词工程）
+| 维度 | 平均评分 | 说明 |
+|------|----------|------|
+| 来源可信度 | ⭐⭐⭐⭐⭐ | 书籍、行业研究、技术文章均有权威支撑 |
+| 类比适配度 | ⭐⭐⭐⭐⭐ | 「水龙头」「乐队」类比直观易懂 |
+| 故事可塑性 | ⭐⭐⭐⭐⭐ | 「淡季裁人旺季没人」「需求三个月才上线」均为典型真实场景 |
+| 反直觉强度 | ⭐⭐⭐⭐⭐ | 直接针对「IT 可以按需裁招」「排队做就行」误解 |
+| 实用性 | ⭐⭐⭐⭐⭐ | 包含具体对比、风险分析和应对建议 |
 
 ---
 
-## 素材来源追溯
+## 后续补充建议
 
-- 方案预演概念：软件工程最佳实践 + 建筑装修类比
-- AI辅助预演：Claude/ChatGPT官方文档 + AI辅助设计实践
-- 边界检查：软件测试标准方法 + 汽车碰撞测试类比
-- 方案对比：产品决策框架 + 装修选方案类比
+如需补充更多素材，可考虑：
 
----
-
-*素材整理日期：2026-04-21*
-*整理人：研究员 Agent*
+1. **真实案例**：寻找具体企业的裁员后恢复案例
+2. **数据支撑**：补充更多行业数据（如 McKinsey、Gartner 报告）
+3. **反面案例**：补充「裁员后系统瘫痪」的具体案例
