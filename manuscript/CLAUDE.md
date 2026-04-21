@@ -42,6 +42,7 @@
 | CH-17 | `chapters/CH-17-验收与测试.md` | approved | [PMB-23](mention://issue/ce802795-2c31-4127-bf4b-2e8b5c9b1175) |
 | CH-19 | `chapters/CH-19-DDD与TDD.md` | approved | [PMB-25](mention://issue/4fe430cd-8311-4f7d-a4a7-6cfa43cb2a51) |
 | CH-21 | `chapters/ch-21-mvc-架构模式与cqrs.md` | approved | [PMB-27](mention://issue/512b4cdd-8f13-4fa3-8f5d-81c2d75ef6b3) |
+| CH-37 | `chapters/CH-37-服务蓝图与商业模式画布.md` | drafting | [PMB-44](mention://issue/c232138d-076c-4aab-b060-af5e721c5547) |
 
 ## 章节状态定义
 
