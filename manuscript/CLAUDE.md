@@ -45,6 +45,7 @@
 | CH-22b | `chapters/CH-22b-Git认知-版本控制基础.md` | drafting | [PMB-35](mention://issue/13376fa5-fd0b-4e0f-907b-8077c97ac110) |
 | CH-26 | `chapters/CH-26-系统成本与切换代价.md` | drafting | [PMB-32](mention://issue/634a2e1b-3658-4f56-858d-317dc6c72795) |
 | CH-32 | `chapters/CH-32-质量把控.md` | drafting | [PMB-38](mention://issue/cc8e75b6-5233-490d-97f2-4b4b4216ca95) |
+| CH-36 | `chapters/CH-36-价值主张画布与用户旅程图.md` | drafting | [PMB-41](mention://issue/7a318451-e1a0-4d69-86cf-b20e3a53cac0) |
 | CH-37 | `chapters/CH-37-服务蓝图与商业模式画布.md` | drafting | [PMB-44](mention://issue/c232138d-076c-4aab-b060-af5e721c5547) |
 
 ## 章节状态定义
