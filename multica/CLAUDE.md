@@ -4,7 +4,7 @@
 
 ## 概述
 
-multica 是本项目的 AI 协作系统，包含 **6 个 Agent**、**7 个 Skill** 和完整的 **TDD 写作工作流**。Agent 扮演角色，Skill 提供可复用能力，Workflow 编排协作流程。
+multica 是本项目的 AI 协作系统，包含 **6 个 Agent**、**8 个 Skill** 和完整的 **TDD 写作工作流**。Agent 扮演角色，Skill 提供可复用能力，Workflow 编排协作流程。
 
 **Agent/Skill 注册表（单一事实源）**：`agents/manifest.yaml`
 **流程规范**：`../process/`（Issue 协议、Git 规范、质量门禁、工具兼容）
@@ -14,7 +14,7 @@ multica 是本项目的 AI 协作系统，包含 **6 个 Agent**、**7 个 Skill
 | 子目录 | 用途 | 子级 CLAUDE.md |
 |--------|------|---------------|
 | `agents/` | Agent 角色定义（6 个） | `agents/CLAUDE.md` |
-| `skills/` | Skill 能力定义（7 个） | `skills/CLAUDE.md` |
+| `skills/` | Skill 能力定义（8 个） | `skills/CLAUDE.md` |
 | `workflows/` | 工作流配置与模板 | `workflows/CLAUDE.md` |
 
 ## 快速索引
@@ -26,7 +26,7 @@ multica 是本项目的 AI 协作系统，包含 **6 个 Agent**、**7 个 Skill
 
 | Agent | 角色 | 绑定 Skill | mention |
 |-------|------|-----------|---------|
-| `editor-chief` | 主编 | review-quality, term-lookup, lint-check | `[@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c)` |
+| `editor-chief` | 主编 | review-quality, term-lookup, lint-check, feishu-publish | `[@主编](mention://agent/7ba899bd-9e47-43d6-8f82-9940839f157c)` |
 | `author-draft` | 作者 | chapter-draft, term-lookup | `[@作者](mention://agent/a054c330-d1a7-445c-b9da-94b8564970b2)` |
 | `reviewer` | 审稿人 | lint-check, review-quality, term-lookup | `[@审稿人](mention://agent/6586d624-bd24-4af2-884c-2ce54705555c)` |
 | `researcher` | 研究员 | research-search | `[@研究员](mention://agent/4828ea52-91fe-4422-b101-b3504d28b82c)` |
@@ -44,6 +44,7 @@ multica 是本项目的 AI 协作系统，包含 **6 个 Agent**、**7 个 Skill
 | `case-develop` | 正面/反面案例场景开发 | term-glossary.md（角色定义） |
 | `diagram-create` | 图示可视化创建 | — |
 | `research-search` | 素材搜索与类比生成 | — |
+| `feishu-publish` | 飞书文章发布工作流（发布+权限+预告+目录） | lark-cli（外部工具） |
 
 ### 核心工作流
 

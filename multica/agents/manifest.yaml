@@ -26,6 +26,7 @@ agents:
       - review-quality   # 850b316e-e735-4664-a7a8-b454604c003b
       - term-lookup      # 8ccb36b5-c098-4581-b94d-d4727f34a49d
       - lint-check       # d9f5ed84-0b61-43a3-86f0-488403d3b8d9
+      - feishu-publish   # f3a7c821-9d4e-4b2a-8e15-2c6d0f1a3b9e
     permissions:
       create_issue: true
       close_issue: true
@@ -160,6 +161,15 @@ skills:
       - tool: tavily
         required: true
         config_ref: "环境变量 TAVILY_API_KEY"
+
+  - name: feishu-publish
+    uuid: "f3a7c821-9d4e-4b2a-8e15-2c6d0f1a3b9e"
+    file: ../skills/feishu-publish.md
+    callers: [editor-chief]
+    external_deps:
+      - tool: lark-cli
+        required: true
+        config_ref: "lark-cli 已配置并登录 user 身份"
 
 # 工作流状态机
 workflow:
