@@ -77,6 +77,7 @@
 | CH-46 | `chapters/CH-46-报表与状态实战.md` | drafting | [PMB-53](mention://issue/5259d27c-53b3-4959-b061-1398035d3233) |
 | CH-47 | `chapters/CH-47-多系统集成实战.md` | drafting | — |
 | CH-48 | `chapters/CH-48-案例复盘.md` | approved | [PMB-55](mention://issue/a77ce704-9add-4d31-890c-e737f430b99c) |
+| CH-50 | `chapters/CH-50-异常与边界陷阱.md` | drafting | [PMB-57](mention://issue/ff57b273-2bbd-4104-8405-c54f26376b0f) |
 
 ## 章节状态定义
 
