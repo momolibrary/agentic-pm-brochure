@@ -4,7 +4,7 @@
 
 ## 概述
 
-本目录定义了 7 个可复用的 Skill，每个 Skill 是一个独立能力模块，被 Agent 调用执行具体任务。
+本目录定义了 8 个可复用的 Skill，每个 Skill 是一个独立能力模块，被 Agent 调用执行具体任务。
 
 ## Skill 清单
 
@@ -17,6 +17,7 @@
 | `case-develop.md` | 正面/反面案例场景开发 | case-writer |
 | `diagram-create.md` | 图示可视化创建 | illustrator |
 | `research-search.md` | 素材搜索与类比生成 | researcher |
+| `feishu-publish.md` | 飞书文章发布工作流（发布+权限+预告+目录） | editor-chief |
 
 ## Skill 定义文件规范
 
@@ -49,6 +50,11 @@ case-develop ──→ standards/term-glossary.md（角色定义）
 
 diagram-create     （无外部依赖）
 research-search    （无外部依赖）
+feishu-publish ──→ lark-cli（外部工具）
+               ──→ ~/.agents/skills/lark-doc-publish/SKILL.md
+               ──→ ~/.agents/skills/lark-doc-permission/SKILL.md
+               ──→ ~/.agents/skills/lark-doc-next-chapter/SKILL.md
+               ──→ ~/.agents/skills/lark-doc-toc/SKILL.md
 ```
 
 ## 修改规则
