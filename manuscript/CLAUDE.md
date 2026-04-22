@@ -72,6 +72,8 @@
 | CH-41 | `chapters/CH-41-Git协作实操.md` | drafting | — |
 | CH-42 | `chapters/CH-42-Agentic-Design基础.md` | drafting | — |
 | CH-43 | `chapters/CH-43-AI上下文管理与审查重构.md` | drafting | — |
+| CH-44 | `chapters/CH-44-审批流程基础.md` | drafting | — |
+| CH-45 | `chapters/CH-45-审批与权限实战.md` | drafting | [PMB-52](mention://issue/b5a14c1e-7fce-4446-884a-323c46da8560) |
 
 ## 章节状态定义
 
