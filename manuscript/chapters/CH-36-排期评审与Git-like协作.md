@@ -328,4 +328,4 @@
 
 ---
 
-*下一章预告：CH-37 Human-Agent协作模型*
+*下一章：[CH-37 Human-Agent协作模型](./CH-37-Human-Agent协作模型.md)*
