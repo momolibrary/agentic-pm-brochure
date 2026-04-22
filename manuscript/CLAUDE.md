@@ -74,6 +74,7 @@
 | CH-43 | `chapters/CH-43-AI上下文管理与审查重构.md` | drafting | — |
 | CH-44 | `chapters/CH-44-综合案例从需求到交付.md` | drafting | [PMB-51](mention://issue/cf9d1aca-1f12-4e01-a831-b95e947a8340) |
 | CH-45 | `chapters/CH-45-审批与权限实战.md` | drafting | [PMB-52](mention://issue/b5a14c1e-7fce-4446-884a-323c46da8560) |
+| CH-46 | `chapters/CH-46-报表与状态实战.md` | drafting | [PMB-53](mention://issue/5259d27c-53b3-4959-b061-1398035d3233) |
 
 ## 章节状态定义
 
